@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Trader Joe\'s</string>
+    <string name="name">Recipe Hub</string>
+    <string name="Login">Login</string>
+    <string name="new_user">Welcome New User</string>
+    <string name="Next">Next</string>
+    <string name="Back">Back</string>
+    <string name="Register_New_User">Register New User</string>
+    <string name="Password">Password</string>
+    <string name="full_name">Insert Full Name</string>
+    <string name="email_address">Insert Email Address</string>
+    <string name="User_Name">User Name</string>
+    <string name="reg_User_Name2">Create New User Name</string>
+    <string name="reg_password">New Password</string>
+    <string name="reg_reenter_password">Re-Enter Password</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="recipe_hub">RECIPE HUB</string>
+    <string name="title_activity_pantry">Pantry</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+</resources>
