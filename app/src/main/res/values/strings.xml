@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Trader Joe\'s</string>
+    <string name="api_key">70e6a9b1b8904248b144b11bef4cbfed</string>
     <string name="name">Recipe Hub</string>
+    
     <string name="Login">Login</string>
     <string name="new_user">Welcome New User</string>
     <string name="Next">Next</string>
