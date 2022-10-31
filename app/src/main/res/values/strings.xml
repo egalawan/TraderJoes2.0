@@ -31,4 +31,14 @@
     <string name="title_activity_pantry">Pantry</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="featured_recipes">Featured Recipes</string>
+    <string name="recipe_hub1">Recipe Hub</string>
+    <string name="my_pantry">My Pantry</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="shop">Shop</string>
+    <string name="continue_without_account">Continue without Account</string>
+    <string name="time">Time</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="_2_persons">2 Persons</string>
+    <string name="likes">Likes</string>
 </resources>

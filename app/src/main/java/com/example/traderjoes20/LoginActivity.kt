@@ -12,14 +12,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-        val button_To_Register = findViewById<Button>(R.id.btnRegister)
-        button_To_Register.setOnClickListener{
+        val buttonToRegister = findViewById<Button>(R.id.btnRegister)
+        buttonToRegister.setOnClickListener{
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        val button_To_Main = findViewById<Button>(R.id.btnContinue)
-        button_To_Main.setOnClickListener{
+        val buttonToMain = findViewById<Button>(R.id.btnContinue)
+        buttonToMain.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
