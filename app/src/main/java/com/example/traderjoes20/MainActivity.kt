@@ -1,9 +1,11 @@
 package com.example.traderjoes20
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.example.traderjoes20.Adapters.RandomRecipeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
+import android.widget.Button
 import com.example.traderjoes20.Listeners.RandomRecipeResponseListener
 import com.example.traderjoes20.Models.RandomRecipeApiResponse
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,6 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         manager = RequestManager(this)
         manager!!.getRandomRecipes(randomRecipeResponseListener)
+
+        val buttonToMain = findViewById<Button>(R.id.btnMyPantry)
+        buttonToMain.setOnClickListener{
+            val intent = Intent(this, PantryActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private val randomRecipeResponseListener: RandomRecipeResponseListener =
@@ -26,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                 recyclerView = findViewById(R.id.recycler_random)
                 recyclerView!!.setHasFixedSize(true)
                 recyclerView!!.layoutManager = GridLayoutManager(this@MainActivity, 1)
-                randomRecipeAdapter = RandomRecipeAdapter(this@MainActivity, response!!.recipes)
+                randomRecipeAdapter =
+                    response!!.recipes?.let { RandomRecipeAdapter(this@MainActivity, it) }
                 recyclerView!!.adapter = randomRecipeAdapter
             }
 

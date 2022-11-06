@@ -21,7 +21,6 @@
         android:textSize="45sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.363"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.592">
@@ -36,10 +35,12 @@
         android:fontFamily="@font/trader_joes"
         android:padding="15dp"
         android:text="@string/featured_recipes"
+        android:textAlignment="center"
         android:textColor="@color/cream"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/recycler_random"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="RtlSymmetry" />
 
