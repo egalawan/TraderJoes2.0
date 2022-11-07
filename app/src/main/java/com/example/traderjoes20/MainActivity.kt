@@ -1,15 +1,15 @@
 package com.example.traderjoes20
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import com.example.traderjoes20.Adapters.RandomRecipeAdapter
-import androidx.recyclerview.widget.RecyclerView
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.traderjoes20.Adapters.RandomRecipeAdapter
 import com.example.traderjoes20.Listeners.RandomRecipeResponseListener
 import com.example.traderjoes20.Models.RandomRecipeApiResponse
-import androidx.recyclerview.widget.GridLayoutManager
-import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     private var manager: RequestManager? = null
@@ -21,9 +21,15 @@ class MainActivity : AppCompatActivity() {
         manager = RequestManager(this)
         manager!!.getRandomRecipes(randomRecipeResponseListener)
 
-        val buttonToMain = findViewById<Button>(R.id.btnMyPantry)
-        buttonToMain.setOnClickListener{
+        val buttonToPantry = findViewById<Button>(R.id.btnMyPantry)
+        buttonToPantry.setOnClickListener{
             val intent = Intent(this, PantryActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonToRecipeHub = findViewById<Button>(R.id.btnRecipeHub)
+        buttonToRecipeHub.setOnClickListener{
+            val intent = Intent(this, RecipeHubActivity::class.java)
             startActivity(intent)
         }
     }
