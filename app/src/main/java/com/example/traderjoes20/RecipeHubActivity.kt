@@ -1,5 +1,6 @@
 package com.example.traderjoes20
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +14,12 @@ import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.net.URL
+import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
 @DelicateCoroutinesApi
 class RecipeHubActivity : AppCompatActivity() {
+
     var itemsArray: ArrayList<Cell> = ArrayList()
     lateinit var adapter: RVAdapter
 
@@ -49,6 +52,7 @@ class RecipeHubActivity : AppCompatActivity() {
         binding.jsonResultsRecyclerview.addItemDecoration(dividerItemDecoration)
     }
 
+    @SuppressLint("LongLogTag")
     private fun parseJSON() {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
@@ -96,7 +100,7 @@ class RecipeHubActivity : AppCompatActivity() {
 
                         // Employee Salary in USD
                         val employeeSalaryUSD = employeeSalary.getInt("usd")
-                        Log.i("Employee Salary in USD:", employeeSalaryUSD.toString())
+                        Log.i("Employee Salary in USD: ", employeeSalaryUSD.toString())
 
                         // Employee Salary in EUR
                         val employeeSalaryEUR = employeeSalary.getInt("eur")

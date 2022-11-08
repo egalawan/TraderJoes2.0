@@ -8,18 +8,6 @@
     android:weightSum="2">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:fontFamily="@font/trader_joes"
-        android:text="@string/recipes"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:paddingTop="25dp"
-        android:textColor="@color/red"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-
     <ScrollView
         android:id="@+id/json_results_scrollview"
         android:layout_width="match_parent"
@@ -41,6 +29,17 @@
 
     </ScrollView>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:fontFamily="@font/trader_joes"
+        android:textAlignment="center"
+        android:padding="8dp"
+        android:text="@string/recipes"
+        android:textColor="@color/red"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/json_results_recyclerview"
