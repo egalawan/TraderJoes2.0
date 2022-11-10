@@ -58,6 +58,7 @@ class RecipeHubActivity : AppCompatActivity() {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
                 URL("https://raw.githubusercontent.com/johncodeos-blog/ParseJSONAndroidExample/main/nested.json")
+
             val httpsURLConnection = url.openConnection() as HttpsURLConnection
             httpsURLConnection.setRequestProperty(
                 "Accept",
@@ -84,10 +85,10 @@ class RecipeHubActivity : AppCompatActivity() {
                     val jsonArray = jsonObject.getJSONArray("data")
 
                     for (i in 0 until jsonArray.length()) {
-
+                        //getJSONObject(for each i).getString or .getJSONObject
                         // ID
-                        val id = jsonArray.getJSONObject(i).getString("id")
-                        Log.i("ID: ", id)
+                        val id = jsonArray.getJSONObject(i).getString("img")
+                        Log.i("img: ", id)
 
                         // Employee
                         val employee = jsonArray.getJSONObject(i).getJSONObject("employee")
