@@ -1,15 +1,9 @@
 package com.example.traderjoes20
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
 import android.widget.ArrayAdapter
 import android.widget.ListView
-
 import androidx.appcompat.app.AppCompatActivity
-
 import com.example.traderjoes20.databinding.ActivityPantryBinding
 
 class PantryActivity : AppCompatActivity() {
@@ -31,7 +25,7 @@ class PantryActivity : AppCompatActivity() {
             "Organic Baby Lettuce Mix ", " Organic Arugula", " Corn on the Cob ",  "Super Sweet Fresh Corn ", "Broccoli & Kale Slaw ", "Organic Persian Cucumbers\n ",
             "Organic Shredded Green & Red ",
             )
-        var mListView = findViewById<ListView>(R.id.userlist)
+        val mListView = findViewById<ListView>(R.id.userlist)
         arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users)
         mListView.adapter = arrayAdapter
 

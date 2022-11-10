@@ -31,6 +31,7 @@ class RecipeHubActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         // Clean TextViews
         binding.jsonResultsTextview.text = ""
 

@@ -11,8 +11,7 @@
         android:id="@+id/welcome_user"
         android:layout_width="367dp"
         android:layout_height="57dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/my_border2"
         android:fontFamily="@font/trader_joes"
         android:includeFontPadding="true"
@@ -22,8 +21,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.592">
+        app:layout_constraintTop_toTopOf="parent">
 
     </TextView>
 
@@ -53,12 +51,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_random"
-        android:layout_width="380dp"
-        android:layout_height="489dp"
+        android:layout_width="378dp"
+        android:layout_height="463dp"
         android:layout_marginBottom="36dp"
+        android:background="@drawable/my_border"
         android:paddingStart="2dp"
         android:paddingEnd="5dp"
-        android:background="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/btnRecipeHub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
@@ -70,7 +68,7 @@
         android:id="@+id/btnRecipeHub"
         android:layout_width="99dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/cream"
         android:fontFamily="@font/trader_joes"
         android:shadowColor="@color/black"
@@ -85,7 +83,7 @@
     <Button
         android:id="@+id/btnMyPantry"
         android:layout_width="93dp"
-        android:layout_height="50dp"
+        android:layout_height="51dp"
         android:layout_marginStart="27dp"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="16dp"
