@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         manager = RequestManager(this)
         manager!!.getRandomRecipes(randomRecipeResponseListener)
 
+        //each button functionality
         val buttonToPantry = findViewById<Button>(R.id.btnMyPantry)
         buttonToPantry.setOnClickListener{
             val intent = Intent(this, PantryActivity::class.java)
@@ -29,7 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         val buttonToRecipeHub = findViewById<Button>(R.id.btnRecipeHub)
         buttonToRecipeHub.setOnClickListener{
-            val intent = Intent(this, RecipeHubActivity::class.java)
+            val intent = Intent(this, RecipesActivity::class.java)
+            startActivity(intent)
+        }
+
+        val buttonToShop = findViewById<Button>(R.id.btnShop)
+        buttonToShop.setOnClickListener{
+            val intent = Intent(this, ShopActivity::class.java)
             startActivity(intent)
         }
     }

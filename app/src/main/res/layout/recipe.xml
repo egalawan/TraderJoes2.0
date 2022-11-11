@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:gravity="center"
+    android:background="@drawable/my_border">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="89dp"
+                android:layout_height="37dp"
+                android:fontFamily="@font/trader_joes"
+                android:text="Title: "
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/title_textview"
+                android:layout_width="284dp"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/trader_joes"
+                android:text="Lorem Ipsum"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="Serves: "
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/serves_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cooking Time: "
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/employee_age_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredients: "
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ingredients_textview"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Lorem Ipsum"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

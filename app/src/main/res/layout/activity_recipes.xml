@@ -17,31 +17,11 @@
         android:textSize="30sp"
         android:textStyle="bold"
         />
-    <ScrollView
-        android:id="@+id/Recipes_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:layout_weight="1"
-        android:background="@drawable/my_border"
-        android:scrollbars="none">
-
-        <TextView
-            android:id="@+id/Recipe_textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/trader_joes"
-            android:padding="10dp"
-            android:text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
-            android:textColor="@android:color/black"
-            android:textSize="13sp" />
-
-    </ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recipes_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="669dp"
         android:layout_weight="1"
         android:background="@drawable/my_border" />
 

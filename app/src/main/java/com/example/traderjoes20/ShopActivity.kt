@@ -18,7 +18,7 @@ import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
 @DelicateCoroutinesApi
-class RecipeHubActivity : AppCompatActivity() {
+class ShopActivity : AppCompatActivity() {
 
     var itemsArray: ArrayList<Cell> = ArrayList()
     lateinit var adapter: RVAdapter
@@ -33,7 +33,7 @@ class RecipeHubActivity : AppCompatActivity() {
 
 
         // Clean TextViews
-        binding.jsonResultsTextview.text = ""
+        //binding.jsonResultsTextview.text = ""
 
         setupRecyclerView()
         parseJSON()
@@ -78,7 +78,7 @@ class RecipeHubActivity : AppCompatActivity() {
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val prettyJson = gson.toJson(JsonParser.parseString(response))
                     Log.d("Pretty Printed JSON :", prettyJson)
-                    binding.jsonResultsTextview.text = prettyJson
+                   // binding.jsonResultsTextview.text = prettyJson
 
                     val jsonObject = JSONTokener(response).nextValue() as JSONObject
 
@@ -87,8 +87,8 @@ class RecipeHubActivity : AppCompatActivity() {
                     for (i in 0 until jsonArray.length()) {
                         //getJSONObject(for each i).getString or .getJSONObject
                         // ID
-                        val id = jsonArray.getJSONObject(i).getString("img")
-                        Log.i("img: ", id)
+                        val id = jsonArray.getJSONObject(i).getString("id")
+                        Log.i("id: ", id)
 
                         // Employee
                         val employee = jsonArray.getJSONObject(i).getJSONObject("employee")
