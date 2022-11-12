@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/my_border2"
+    android:background="@color/background"
     android:orientation="vertical"
     android:weightSum="2">
 
-
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_width="390dp"
+        android:layout_height="67dp"
+        android:layout_gravity="center"
+        android:background="@drawable/my_border2"
         android:fontFamily="@font/trader_joes"
-        android:textAlignment="center"
         android:paddingTop="15dp"
         android:text="@string/customers"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
         android:textColor="@color/red"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/json_results_recyclerview"
-        android:layout_width="match_parent"
-        android:padding="10dp"
-        android:layout_height="671dp"
+        android:layout_width="359dp"
+        android:layout_height="611dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:background="@drawable/my_border" />
 

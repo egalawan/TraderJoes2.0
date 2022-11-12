@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/cream"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="35sp"
+        android:layout_width="238dp"
+        android:layout_height="71dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
         android:background="@drawable/my_border2"
-        android:textColor="@color/red"
-        android:layout_marginTop="40dp"
-        android:textAlignment="center"
         android:fontFamily="@font/trader_joes"
-        android:text="MyPantry" />
+        android:gravity="center"
+        android:text="MyPantry"
+        android:textColor="@color/red"
+        android:textSize="35sp" />
 
     <ListView
         android:id="@+id/userlist"
-        android:layout_width="match_parent"
-        android:layout_height="399dp"
-        android:background="@drawable/my_border2"
-        android:layout_marginTop="70dp">
+        android:layout_width="379dp"
+        android:layout_height="529dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/my_border">
+
     </ListView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="82dp"
-        android:layout_height="93dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/red"
-        android:src="@drawable/ic_baseline_thumb_up_24">
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="72dp"
+        android:layout_height="59dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/my_border"
+        app:srcCompat="@drawable/plus_sign" />
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 </LinearLayout>

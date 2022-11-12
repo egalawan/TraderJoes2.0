@@ -1,10 +1,6 @@
 package com.example.traderjoes20.Models
 
-import com.example.traderjoes20.Models.ExtendedIngredient
-import com.example.traderjoes20.Models.AnalyzedInstruction
-import java.util.ArrayList
-
-class Recipe {
+class Recipe() {
     var vegetarian = false
     var vegan = false
     var glutenFree = false

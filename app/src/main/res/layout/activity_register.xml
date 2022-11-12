@@ -7,6 +7,39 @@
     android:background="@color/red"
     tools:context=".RegisterActivity">
 
+    <LinearLayout
+        android:layout_width="348dp"
+        android:layout_height="168dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleName"
+            android:layout_width="324dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/background"
+            android:fontFamily="@font/trader_joes"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textColor="@color/design_default_color_error"
+            android:textSize="45sp" />
+
+        <TextView
+            android:id="@+id/titleName2"
+            android:layout_width="324dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/background"
+            android:fontFamily="@font/trader_joes"
+            android:text="@string/name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="45sp" />
+    </LinearLayout>
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="345dp"
@@ -31,6 +64,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/my_border2"
+                android:layout_gravity="center"
                 android:fontFamily="@font/trader_joes"
                 android:text="@string/Register_New_User"
                 android:textAlignment="center"
@@ -119,7 +153,7 @@
                     android:id="@+id/backToLogin"
                     android:layout_width="149dp"
                     android:layout_height="65dp"
-                    android:backgroundTint="@color/cream"
+                    android:backgroundTint="@color/background"
                     android:text="@string/Back"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -134,7 +168,7 @@
                     android:id="@+id/btnCreateAccount"
                     android:layout_width="149dp"
                     android:layout_height="65dp"
-                    android:backgroundTint="@color/cream"
+                    android:backgroundTint="@color/background"
                     android:text="@string/Next"
                     android:textColor="@color/black"
                     android:textColorLink="@color/design_default_color_error"
@@ -150,38 +184,6 @@
         </LinearLayout>
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="348dp"
-        android:layout_height="168dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/titleName"
-            android:layout_width="324dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/my_border2"
-            android:fontFamily="@font/trader_joes"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textColor="@color/design_default_color_error"
-            android:textSize="45sp" />
-
-        <TextView
-            android:id="@+id/titleName2"
-            android:layout_width="324dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/my_border2"
-            android:fontFamily="@font/trader_joes"
-            android:text="@string/name"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="45sp" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

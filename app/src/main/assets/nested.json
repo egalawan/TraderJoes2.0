@@ -2,7 +2,7 @@
     "data": [
         {
             "id": "1",
-            "employee": {
+            "ingredient": {
                 "name": "Tiger Nixon",
                 "salary": {
                     "usd": 320800,
@@ -13,7 +13,7 @@
         },
         {
             "id": "2",
-            "employee": {
+            "ingredient": {
                 "name": "Garrett Winters",
                 "salary": {
                     "usd": 170750,
@@ -24,7 +24,7 @@
         },
         {
             "id": "3",
-            "employee": {
+            "ingredient": {
                 "name": "Ashton Cox",
                 "salary": {
                     "usd": 86000,
@@ -35,7 +35,7 @@
         },
         {
             "id": "4",
-            "employee": {
+            "ingredient": {
                 "name": "Cedric Kelly",
                 "salary": {
                     "usd": 433060,
@@ -46,7 +46,7 @@
         },
         {
             "id": "5",
-            "employee": {
+            "ingredient": {
                 "name": "Airi Satou",
                 "salary": {
                     "usd": 162700,
@@ -57,7 +57,7 @@
         },
         {
             "id": "6",
-            "employee": {
+            "ingredient": {
                 "name": "Brielle Williamson",
                 "salary": {
                     "usd": 372000,
@@ -68,7 +68,7 @@
         },
         {
             "id": "7",
-            "employee": {
+            "ingredient": {
                 "name": "Herrod Chandler",
                 "salary": {
                     "usd": 137500,
@@ -79,7 +79,7 @@
         },
         {
             "id": "8",
-            "employee": {
+            "ingredient": {
                 "name": "Rhona Davidson",
                 "salary": {
                     "usd": 327900,
@@ -90,7 +90,7 @@
         },
         {
             "id": "9",
-            "employee": {
+            "ingredient": {
                 "name": "Colleen Hurst",
                 "salary": {
                     "usd": 205500,
@@ -101,7 +101,7 @@
         },
         {
             "id": "10",
-            "employee": {
+            "ingredient": {
                 "name": "Sonya Frost",
                 "salary": {
                     "usd": 103600,
@@ -112,7 +112,7 @@
         },
         {
             "id": "11",
-            "employee": {
+            "ingredient": {
                 "name": "Jena Gaines",
                 "salary": {
                     "usd": 90560,
@@ -123,7 +123,7 @@
         },
         {
             "id": "12",
-            "employee": {
+            "ingredient": {
                 "name": "Quinn Flynn",
                 "salary": {
                     "usd": 342000,
@@ -134,7 +134,7 @@
         },
         {
             "id": "13",
-            "employee": {
+            "ingredient": {
                 "name": "Charde Marshall",
                 "salary": {
                     "usd": 470600,
@@ -145,7 +145,7 @@
         },
         {
             "id": "14",
-            "employee": {
+            "ingredient": {
                 "name": "Haley Kennedy",
                 "salary": {
                     "usd": 313500,
@@ -156,7 +156,7 @@
         },
         {
             "id": "15",
-            "employee": {
+            "ingredient": {
                 "name": "Tatyana Fitzpatrick",
                 "salary": {
                     "usd": 385750,
@@ -167,7 +167,7 @@
         },
         {
             "id": "16",
-            "employee": {
+            "ingredient": {
                 "name": "Michael Silva",
                 "salary": {
                     "usd": 198500,
@@ -178,7 +178,7 @@
         },
         {
             "id": "17",
-            "employee": {
+            "ingredient": {
                 "name": "Paul Byrd",
                 "salary": {
                     "usd": 725000,
@@ -189,7 +189,7 @@
         },
         {
             "id": "18",
-            "employee": {
+            "ingredient": {
                 "name": "Gloria Little",
                 "salary": {
                     "usd": 237500,
@@ -200,7 +200,7 @@
         },
         {
             "id": "19",
-            "employee": {
+            "ingredient": {
                 "name": "Bradley Greer",
                 "salary": {
                     "usd": 132000,
@@ -211,7 +211,7 @@
         },
         {
             "id": "20",
-            "employee": {
+            "ingredient": {
                 "name": "Dai Rios",
                 "salary": {
                     "usd": 217500,
@@ -222,7 +222,7 @@
         },
         {
             "id": "21",
-            "employee": {
+            "ingredient": {
                 "name": "Jenette Caldwell",
                 "salary": {
                     "usd": 345000,
@@ -233,7 +233,7 @@
         },
         {
             "id": "22",
-            "employee": {
+            "ingredient": {
                 "name": "Yuri Berry",
                 "salary": {
                     "usd": 675000,
@@ -244,7 +244,7 @@
         },
         {
             "id": "23",
-            "employee": {
+            "ingredient": {
                 "name": "Caesar Vance",
                 "salary": {
                     "usd": 106450,
@@ -255,7 +255,7 @@
         },
         {
             "id": "24",
-            "employee": {
+            "ingredient": {
                 "name": "Doris Wilder",
                 "salary": {
                     "usd": 106450,

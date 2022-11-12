@@ -31,7 +31,6 @@ class ShopActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
         // Clean TextViews
         //binding.jsonResultsTextview.text = ""
 
@@ -57,7 +56,7 @@ class ShopActivity : AppCompatActivity() {
     private fun parseJSON() {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
-                URL("https://raw.githubusercontent.com/johncodeos-blog/ParseJSONAndroidExample/main/nested.json")
+                URL("https://raw.githubusercontent.com/egalawan/TraderJoes2.0/main/app/src/main/assets/nested.json")
 
             val httpsURLConnection = url.openConnection() as HttpsURLConnection
             httpsURLConnection.setRequestProperty(

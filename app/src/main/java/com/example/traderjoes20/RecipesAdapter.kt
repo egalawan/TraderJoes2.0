@@ -3,10 +3,9 @@ package com.example.traderjoes20
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traderjoes20.Models.Recipe
 import com.example.traderjoes20.databinding.RecipeBinding
 
-class RecipesAdapter(private val recipe: ArrayList<Recipe>) :
+class RecipesAdapter(private val recipe: ArrayList<RecipeItems>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ItemViewHolder(var viewBinding: RecipeBinding) : RecyclerView.ViewHolder(viewBinding.root) {
@@ -21,10 +20,9 @@ class RecipesAdapter(private val recipe: ArrayList<Recipe>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemViewHolder = holder as ItemViewHolder
-        //itemViewHolder.viewBinding.titleTextview.text = recipe[position].title
-        //itemViewHolder.viewBinding.servesTextview.text = recipe[position].serves
-        //itemViewHolder.viewBinding.ingredientsTextview.text = recipe[position].ingredients.toString()
-        //itemViewHolder.viewBinding.employeeAgeTextview.text = recipe[position].cookingTime
+        itemViewHolder.viewBinding.titleTextview.text = recipe[position].title
+        itemViewHolder.viewBinding.servesTextview.text = recipe[position].serves
+        itemViewHolder.viewBinding.ingredientsTextview.text = recipe[position].ingredients.toString()
         //Picasso.get().load(recipe[position].img).into(holder.image_view)
         //itemViewHolder.viewBinding.imageView.
 

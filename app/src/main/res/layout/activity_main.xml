@@ -55,14 +55,14 @@
         android:layout_height="463dp"
         android:layout_marginBottom="36dp"
         android:background="@drawable/my_border"
-        android:paddingStart="2dp"
-        android:paddingEnd="5dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRecipeHub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+
 
     <Button
         android:id="@+id/btnRecipeHub"
@@ -107,9 +107,9 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/cream"
         android:fontFamily="@font/trader_joes"
-        android:text="@string/shop"
+        android:text="@string/family"
         android:textColor="@color/red"
-        android:textSize="15sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recycler_random"
         app:layout_constraintStart_toEndOf="@+id/btnRecipeHub"
