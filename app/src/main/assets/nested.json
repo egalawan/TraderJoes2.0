@@ -4,264 +4,263 @@
             "id": "1",
             "ingredient": {
                 "name": "Tiger Nixon",
-                "salary": {
-                    "usd": 320800,
-                    "eur": 273545
+                "price": {
+                    "usd": 320800
                 },
-                "age": "61"
+                "count": "61"
             }
         },
         {
             "id": "2",
             "ingredient": {
                 "name": "Garrett Winters",
-                "salary": {
+                "price": {
                     "usd": 170750,
                     "eur": 145598
                 },
-                "age": "63"
+                "count": "63"
             }
         },
         {
             "id": "3",
             "ingredient": {
                 "name": "Ashton Cox",
-                "salary": {
+                "price": {
                     "usd": 86000,
                     "eur": 73331
                 },
-                "age": "66"
+                "count": "66"
             }
         },
         {
             "id": "4",
             "ingredient": {
                 "name": "Cedric Kelly",
-                "salary": {
+                "price": {
                     "usd": 433060,
                     "eur": 369268
                 },
-                "age": "22"
+                "count": "22"
             }
         },
         {
             "id": "5",
             "ingredient": {
                 "name": "Airi Satou",
-                "salary": {
+                "price": {
                     "usd": 162700,
                     "eur": 138733
                 },
-                "age": "33"
+                "count": "33"
             }
         },
         {
             "id": "6",
             "ingredient": {
                 "name": "Brielle Williamson",
-                "salary": {
+                "price": {
                     "usd": 372000,
                     "eur": 317203
                 },
-                "age": "61"
+                "count": "61"
             }
         },
         {
             "id": "7",
             "ingredient": {
                 "name": "Herrod Chandler",
-                "salary": {
+                "price": {
                     "usd": 137500,
                     "eur": 117245
                 },
-                "age": "59"
+                "count": "59"
             }
         },
         {
             "id": "8",
             "ingredient": {
                 "name": "Rhona Davidson",
-                "salary": {
+                "price": {
                     "usd": 327900,
                     "eur": 279599
                 },
-                "age": "55"
+                "count": "55"
             }
         },
         {
             "id": "9",
             "ingredient": {
                 "name": "Colleen Hurst",
-                "salary": {
+                "price": {
                     "usd": 205500,
                     "eur": 175229
                 },
-                "age": "39"
+                "count": "39"
             }
         },
         {
             "id": "10",
             "ingredient": {
                 "name": "Sonya Frost",
-                "salary": {
+                "price": {
                     "usd": 103600,
                     "eur": 88339
                 },
-                "age": "23"
+                "count": "23"
             }
         },
         {
             "id": "11",
             "ingredient": {
                 "name": "Jena Gaines",
-                "salary": {
+                "price": {
                     "usd": 90560,
                     "eur": 77220
                 },
-                "age": "30"
+                "count": "30"
             }
         },
         {
             "id": "12",
             "ingredient": {
                 "name": "Quinn Flynn",
-                "salary": {
+                "price": {
                     "usd": 342000,
                     "eur": 291622
                 },
-                "age": "22"
+                "count": "22"
             }
         },
         {
             "id": "13",
             "ingredient": {
                 "name": "Charde Marshall",
-                "salary": {
+                "price": {
                     "usd": 470600,
                     "eur": 401279
                 },
-                "age": "36"
+                "count": "36"
             }
         },
         {
             "id": "14",
             "ingredient": {
                 "name": "Haley Kennedy",
-                "salary": {
+                "price": {
                     "usd": 313500,
                     "eur": 267320
                 },
-                "age": "43"
+                "count": "43"
             }
         },
         {
             "id": "15",
             "ingredient": {
                 "name": "Tatyana Fitzpatrick",
-                "salary": {
+                "price": {
                     "usd": 385750,
                     "eur": 328927
                 },
-                "age": "19"
+                "count": "19"
             }
         },
         {
             "id": "16",
             "ingredient": {
                 "name": "Michael Silva",
-                "salary": {
+                "price": {
                     "usd": 198500,
                     "eur": 169260
                 },
-                "age": "66"
+                "count": "66"
             }
         },
         {
             "id": "17",
             "ingredient": {
                 "name": "Paul Byrd",
-                "salary": {
+                "price": {
                     "usd": 725000,
                     "eur": 618205
                 },
-                "age": "64"
+                "count": "64"
             }
         },
         {
             "id": "18",
             "ingredient": {
                 "name": "Gloria Little",
-                "salary": {
+                "price": {
                     "usd": 237500,
                     "eur": 202515
                 },
-                "age": "59"
+                "count": "59"
             }
         },
         {
             "id": "19",
             "ingredient": {
                 "name": "Bradley Greer",
-                "salary": {
+                "price": {
                     "usd": 132000,
                     "eur": 112556
                 },
-                "age": "41"
+                "count": "41"
             }
         },
         {
             "id": "20",
             "ingredient": {
                 "name": "Dai Rios",
-                "salary": {
+                "price": {
                     "usd": 217500,
                     "eur": 185461
                 },
-                "age": "35"
+                "count": "35"
             }
         },
         {
             "id": "21",
             "ingredient": {
                 "name": "Jenette Caldwell",
-                "salary": {
+                "price": {
                     "usd": 345000,
                     "eur": 294180
                 },
-                "age": "30"
+                "count": "30"
             }
         },
         {
             "id": "22",
             "ingredient": {
                 "name": "Yuri Berry",
-                "salary": {
+                "price": {
                     "usd": 675000,
                     "eur": 575570
                 },
-                "age": "40"
+                "count": "40"
             }
         },
         {
             "id": "23",
             "ingredient": {
                 "name": "Caesar Vance",
-                "salary": {
+                "price": {
                     "usd": 106450,
                     "eur": 90769
                 },
-                "age": "21"
+                "count": "21"
             }
         },
         {
             "id": "24",
             "ingredient": {
                 "name": "Doris Wilder",
-                "salary": {
+                "price": {
                     "usd": 106450,
                     "eur": 72990
                 },
-                "age": "23"
+                "count": "23"
             }
         }
     ]

@@ -1,10 +1,12 @@
 package com.example.traderjoes20
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.traderjoes20.R.id.backToLogin
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

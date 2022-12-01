@@ -10,34 +10,50 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="238dp"
-        android:layout_height="71dp"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
         android:background="@drawable/my_border2"
         android:fontFamily="@font/trader_joes"
         android:gravity="center"
-        android:text="MyPantry"
+        android:text="Grocery List"
         android:textColor="@color/red"
         android:textSize="35sp" />
 
+    <LinearLayout
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/AddItem"
+            android:layout_width="262dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:hint="Enter item name">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="10dp"
+            android:text="Add" />
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/userlist"
-        android:layout_width="379dp"
-        android:layout_height="529dp"
+        android:layout_width="378dp"
+        android:layout_height="564dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:background="@drawable/my_border">
 
     </ListView>
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="72dp"
-        android:layout_height="59dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/my_border"
-        app:srcCompat="@drawable/plus_sign" />
 
 </LinearLayout>

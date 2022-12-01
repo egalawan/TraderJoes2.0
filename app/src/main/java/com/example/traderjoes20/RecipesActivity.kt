@@ -8,19 +8,19 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityRecipesBinding
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.net.URL
+import java.util.*
 import javax.net.ssl.HttpsURLConnection
+
 
 @DelicateCoroutinesApi
 class RecipesActivity : AppCompatActivity() {
 
-    var itemsArray: ArrayList<RecipeItems> = ArrayList()
-    lateinit var adapter: RecipesAdapter
+    var recipeItems: ArrayList<Recipes> = ArrayList()
+    lateinit var adapter: RecipeAdapter
 
     private lateinit var binding: ActivityRecipesBinding
 
@@ -29,29 +29,39 @@ class RecipesActivity : AppCompatActivity() {
         binding = ActivityRecipesBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        //val linearLayout = findViewById<LinearLayout>(R.id.this_linearLayout)
+        //val imageView = ImageView(this)
 
+       // Glide.with(this).load("https://s3.amazonaws.com/appsdeveloperblog/Micky.jpg").into(imageView)\
+//        Picasso.with(this).load().into(imageView)
+//        linearLayout.addView(imageView)
         setupRecyclerView()
+        parseJSON()
+
     }
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
-        binding.RecipesRecyclerview.layoutManager = layoutManager
-        binding.RecipesRecyclerview.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.setHasFixedSize(true)
         val dividerItemDecoration =
             DividerItemDecoration(
-                binding.RecipesRecyclerview.context,
+                binding.recyclerView.context,
                 layoutManager.orientation
             )
         ContextCompat.getDrawable(this, R.drawable.line_divider)
             ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
-        binding.RecipesRecyclerview.addItemDecoration(dividerItemDecoration)
+        binding.recyclerView.addItemDecoration(dividerItemDecoration)
     }
+
+
 
     @SuppressLint("LongLogTag")
     private fun parseJSON() {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
                 URL("https://raw.githubusercontent.com/egalawan/TraderJoes2.0/main/app/src/main/assets/recipes.json")
+
             val httpsURLConnection = url.openConnection() as HttpsURLConnection
             httpsURLConnection.setRequestProperty(
                 "Accept",
@@ -68,43 +78,97 @@ class RecipesActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
 
                     // Convert raw JSON to pretty JSON using GSON library
-                    val gson = GsonBuilder().setPrettyPrinting().create()
-                    val prettyJson = gson.toJson(JsonParser.parseString(response))
-                    Log.d("Pretty Printed JSON :", prettyJson)
-                    binding.RecipesTextview.text = prettyJson
+                    //val gson = GsonBuilder().setPrettyPrinting().create()
+                    //val prettyJson = gson.toJson(JsonParser.parseString(response))
+                    //Log.d("Pretty Printed JSON :", prettyJson)
+                    // binding.jsonResultsTextview.text = prettyJson
 
                     val jsonObject = JSONTokener(response).nextValue() as JSONObject
 
                     val jsonArray = jsonObject.getJSONArray("recipes")
 
+
+                    //jsonArray.length()
                     for (i in 0 until jsonArray.length()) {
+                        //getJSONObject(for each i).getString or .getJSONObject
+                        //img
+                        val img = jsonArray.getJSONObject(i).getString("img")
 
-                        val ingredients = jsonObject.getString("ingredients")
-                        Log.i("ingredients: ", ingredients)
+                        //tags
+                        //val tags = jsonArray.getJSONObject(i).getJSONArray("tags")
 
+                        //tagId
+                        //val tagId = tags.getInt("tagId".toInt())
+                        //name
+                        //val name = tags.getString("name".toInt())
+                        //val ingredients: ArrayList<String> = ArrayList()
 
-                        val serves = jsonObject.getString("serves")
-                        Log.i("serves: ", serves)
+                        //OG
+                        //ingredients
 
-                        val title = jsonObject.getString("title")
-                        Log.i("title: ", title)
+                        val ingredients = jsonArray.getJSONObject(i).getString("ingredients")
 
-                        val model = RecipeItems(
-                            ingredients,
+                        //val ingredients= jsonArray.getJSONObject(i).getJSONArray("ingredients")
+                        //ingredients.
+
+                        val bracket = "["
+                        val bracket2 = "]"
+                        val comma = ","
+                        val space = ""
+                        val indent = "\n"
+
+                        val newIngredients = ingredients.replace(comma,indent)
+                        val newIng = newIngredients.replace(bracket,space)
+                        val finalIngredients = newIng.replace(bracket2,space)
+
+                        // serves
+                        val serves = jsonArray.getJSONObject(i).getString("serves")
+
+                        // tagIds
+                        val tagIds = jsonArray.getJSONObject(i).getJSONArray("tagIds")
+
+                        //title
+                        val title = jsonArray.getJSONObject(i).getString("title")
+                        //Log.i("title: ", title)
+                        //directions
+                        val directions = jsonArray.getJSONObject(i).getString("directions")
+
+                        //cookingTime
+                        val cookingTime = jsonArray.getJSONObject(i).getString("cookingTime")
+
+                        //prepTime
+                        val prepTime = jsonArray.getJSONObject(i).getString("prepTime")
+
+                        //id
+                        val id = jsonArray.getJSONObject(i).getString("id")
+                        //Log.i("id: ", id)
+
+                        val model = Recipes(
+                            img,
+                            //tagId,
+                            //name,
+                            finalIngredients,
                             serves,
+                            tagIds,
                             title,
+                            directions,
+                            cookingTime,
+                            prepTime,
+                            id,
                         )
-                        itemsArray.add(model)
+                        recipeItems.add(model)
 
-                        adapter = RecipesAdapter(itemsArray)
+                        adapter = RecipeAdapter(recipeItems)
                         adapter.notifyDataSetChanged()
                     }
 
-                    binding.RecipesRecyclerview.adapter = adapter
+                    binding.recyclerView.adapter = adapter
                 }
             } else {
                 Log.e("HTTPURLCONNECTION_ERROR", responseCode.toString())
             }
         }
     }
+
 }
+

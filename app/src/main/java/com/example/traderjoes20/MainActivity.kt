@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.Adapters.RandomRecipeAdapter
 import com.example.traderjoes20.Listeners.RandomRecipeResponseListener
 import com.example.traderjoes20.Models.RandomRecipeApiResponse
+import kotlinx.coroutines.DelicateCoroutinesApi
 
+@DelicateCoroutinesApi
 class MainActivity : AppCompatActivity() {
     private var manager: RequestManager? = null
     var randomRecipeAdapter: RandomRecipeAdapter? = null

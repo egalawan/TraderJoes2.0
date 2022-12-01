@@ -37,6 +37,7 @@
             android:padding="5dp"
             android:background="@color/red"
             android:layout_height="200dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

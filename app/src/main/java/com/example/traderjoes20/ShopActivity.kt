@@ -90,7 +90,7 @@ class ShopActivity : AppCompatActivity() {
                         Log.i("id: ", id)
 
                         // Employee
-                        val employee = jsonArray.getJSONObject(i).getJSONObject("employee")
+                        val employee = jsonArray.getJSONObject(i).getJSONObject("ingredient")
 
                         // Employee Name
                         val employeeName = employee.getString("name")
