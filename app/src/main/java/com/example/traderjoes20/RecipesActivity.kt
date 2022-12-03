@@ -30,12 +30,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         binding = ActivityRecipesBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        //val linearLayout = findViewById<LinearLayout>(R.id.this_linearLayout)
-        //val imageView = ImageView(this)
 
-       // Glide.with(this).load("https://s3.amazonaws.com/appsdeveloperblog/Micky.jpg").into(imageView)\
-//        Picasso.with(this).load().into(imageView)
-//        linearLayout.addView(imageView)
         setupRecyclerView()
         parseJSON()
 

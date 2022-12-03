@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.databinding.AllRecipesBinding
+import com.squareup.picasso.Picasso
 
 class RecipeAdapter(
     private val recipe: ArrayList<Recipes>,
@@ -25,11 +26,11 @@ class RecipeAdapter(
         //Log.i("Url: ", url)
 
         //Picasso.get().load(url).into(recipeViewHolder.recipeImageView)
-        //Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
+        Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
 
         recipeViewHolder.recipeIngredientsTextview.text = recipe[position].ingredients
         recipeViewHolder.recipeTitleTextview.text = recipe[position].title
-        recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
+        //recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
         //recipeViewHolder.viewBinding.RecipeServesTextview.text = recipe[position].serves
         //recipeViewHolder.viewBinding.RecipeCookingTimeTextview.text = recipe[position].cookingTime
         //recipeViewHolder.viewBinding.RecipePrepTimeTextview.text = recipe[position].prepTime
@@ -44,14 +45,14 @@ class RecipeAdapter(
     OnClickListener{
         val recipeIngredientsTextview: TextView = viewBinding.RecipeIngredientsTextview
         val recipeTitleTextview: TextView = viewBinding.RecipeTitleTextview
-        val recipeDirectionsTextview: TextView = viewBinding.RecipeDirectionsTextview
+        //val recipeDirectionsTextview: TextView = viewBinding.RecipeDirectionsTextview
         //var recipeImageView: ImageView
 
         init {
             //recipeImageView = viewBinding.imageView
             viewBinding.RecipeTitleTextview.setOnClickListener(this)
             viewBinding.RecipeIngredientsTextview.setOnClickListener(this)
-            viewBinding.RecipeDirectionsTextview.setOnClickListener(this)
+            //viewBinding.RecipeDirectionsTextview.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {

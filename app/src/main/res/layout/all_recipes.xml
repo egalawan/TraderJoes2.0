@@ -45,22 +45,6 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:layout_width="236dp"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/trader_joes"
-            android:text="Directions"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-        <TextView
-            android:id="@+id/Recipe_directions_Textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/background"
-            android:text="e9999999999"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
             android:id="@+id/text_viewIngredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
