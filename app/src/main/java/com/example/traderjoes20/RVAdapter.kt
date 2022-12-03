@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.databinding.CellBinding
+import com.squareup.picasso.Picasso
 
 class RVAdapter(private val cell: ArrayList<Cell>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -17,10 +18,12 @@ class RVAdapter(private val cell: ArrayList<Cell>) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemViewHolder = holder as ItemViewHolder
-        itemViewHolder.viewBinding.employeeIdTextview.text = cell[position].employeeId
-        itemViewHolder.viewBinding.employeeNameTextview.text = cell[position].employeeName
-        itemViewHolder.viewBinding.employeeSalaryTextview.text = cell[position].employeeSalary
-        itemViewHolder.viewBinding.employeeAgeTextview.text = cell[position].employeeAge
+        itemViewHolder.viewBinding.itemIdTextview.text = cell[position].itemId
+        itemViewHolder.viewBinding.itemNameTextview.text = cell[position].itemName
+        itemViewHolder.viewBinding.itemPriceTextview.text = cell[position].itemPrice
+        itemViewHolder.viewBinding.itemWeightTextview.text = cell[position].itemWeight
+
+        Picasso.get().load(cell[position].itemUrl).into(itemViewHolder.viewBinding.imageView3)
     }
 
     override fun getItemCount(): Int {

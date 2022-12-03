@@ -22,16 +22,21 @@
     <SearchView
         android:id="@+id/Recipe_SearchView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:queryHint="Enter some text..." />
+
 
     <!--recycler view for displaying data-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="369dp"
+        android:clickable="true"
         android:layout_height="585dp"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:background="@color/background" />
+        android:background="@color/background"
+        android:focusable="true" />
 
 
 </LinearLayout>

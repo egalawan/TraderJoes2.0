@@ -7,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.traderjoes20.databinding.ActivityRecipeHubBinding
+import com.example.traderjoes20.databinding.ActivityShopBinding
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -23,11 +22,11 @@ class ShopActivity : AppCompatActivity() {
     var itemsArray: ArrayList<Cell> = ArrayList()
     lateinit var adapter: RVAdapter
 
-    private lateinit var binding: ActivityRecipeHubBinding
+    private lateinit var binding: ActivityShopBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRecipeHubBinding.inflate(layoutInflater)
+        binding = ActivityShopBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -75,8 +74,8 @@ class ShopActivity : AppCompatActivity() {
 
                     // Convert raw JSON to pretty JSON using GSON library
                     val gson = GsonBuilder().setPrettyPrinting().create()
-                    val prettyJson = gson.toJson(JsonParser.parseString(response))
-                    Log.d("Pretty Printed JSON :", prettyJson)
+                    //val prettyJson = gson.toJson(JsonParser.parseString(response))
+                    //Log.d("Pretty Printed JSON :", prettyJson)
                    // binding.jsonResultsTextview.text = prettyJson
 
                     val jsonObject = JSONTokener(response).nextValue() as JSONObject
@@ -87,35 +86,32 @@ class ShopActivity : AppCompatActivity() {
                         //getJSONObject(for each i).getString or .getJSONObject
                         // ID
                         val id = jsonArray.getJSONObject(i).getString("id")
-                        Log.i("id: ", id)
 
-                        // Employee
-                        val employee = jsonArray.getJSONObject(i).getJSONObject("ingredient")
+                        // ingredient
+                        val ingredient = jsonArray.getJSONObject(i).getJSONObject("ingredient")
 
-                        // Employee Name
-                        val employeeName = employee.getString("name")
-                        Log.i("Employee Name: ", employeeName)
+                        // ingredient Name
+                        val itemName = ingredient.getString("item")
 
-                        // Employee Salary
-                        val employeeSalary = employee.getJSONObject("salary")
+                        // ingredient Name
+                        val itemURL = ingredient.getString("item")
 
-                        // Employee Salary in USD
-                        val employeeSalaryUSD = employeeSalary.getInt("usd")
-                        Log.i("Employee Salary in USD: ", employeeSalaryUSD.toString())
+                        // ingredient price
+                        val itemPrice = ingredient.getJSONObject("price")
 
-                        // Employee Salary in EUR
-                        val employeeSalaryEUR = employeeSalary.getInt("eur")
-                        Log.i("Employee Salary: ", employeeSalaryEUR.toString())
+                        // item price in USD
+                        val itemUsd = itemPrice.getInt("usd")
 
-                        // Employee Age
-                        val employeeAge = employee.getString("age")
-                        Log.i("Employee Age: ", employeeAge)
+
+                        // ingredient Age
+                        val itemWeight = ingredient.getString("weight")
 
                         val model = Cell(
                             id,
-                            employeeName,
-                            "$ $employeeSalaryUSD / € $employeeSalaryEUR",
-                            employeeAge
+                            itemURL,
+                            itemName,
+                            "$ $itemUsd",
+                            itemWeight
                         )
                         itemsArray.add(model)
 

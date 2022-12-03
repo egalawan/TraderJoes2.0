@@ -1,6 +1,7 @@
 package com.example.traderjoes20
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,7 @@ import javax.net.ssl.HttpsURLConnection
 
 
 @DelicateCoroutinesApi
-class RecipesActivity : AppCompatActivity() {
+class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
 
     var recipeItems: ArrayList<Recipes> = ArrayList()
     lateinit var adapter: RecipeAdapter
@@ -40,6 +41,25 @@ class RecipesActivity : AppCompatActivity() {
 
     }
 
+    override fun onItemClick(position: Int) {
+        //Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+        //val clickItem = recipeItems[position]
+        //clickItem.ingredients = "Clicked"
+        val intent = Intent(this@RecipesActivity, RecipeActivity::class.java)
+        intent.putExtra("directions", recipeItems[position].directions)
+        intent.putExtra("ingredients", recipeItems[position].ingredients)
+        intent.putExtra("img", recipeItems[position].img)
+        intent.putExtra("serves", recipeItems[position].serves)
+        intent.putExtra("title", recipeItems[position].title)
+        intent.putExtra("cookingTime", recipeItems[position].cookingTime)
+        intent.putExtra("prepTime", recipeItems[position].prepTime)
+
+        startActivity(intent)
+
+        adapter.notifyItemChanged(position)
+
+    }
+
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
@@ -52,9 +72,8 @@ class RecipesActivity : AppCompatActivity() {
         ContextCompat.getDrawable(this, R.drawable.line_divider)
             ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
+
     }
-
-
 
     @SuppressLint("LongLogTag")
     private fun parseJSON() {
@@ -93,23 +112,9 @@ class RecipesActivity : AppCompatActivity() {
                         //getJSONObject(for each i).getString or .getJSONObject
                         //img
                         val img = jsonArray.getJSONObject(i).getString("img")
-
-                        //tags
-                        //val tags = jsonArray.getJSONObject(i).getJSONArray("tags")
-
-                        //tagId
-                        //val tagId = tags.getInt("tagId".toInt())
-                        //name
-                        //val name = tags.getString("name".toInt())
-                        //val ingredients: ArrayList<String> = ArrayList()
-
-                        //OG
-                        //ingredients
+                        //Log.i("img: ", img)
 
                         val ingredients = jsonArray.getJSONObject(i).getString("ingredients")
-
-                        //val ingredients= jsonArray.getJSONObject(i).getJSONArray("ingredients")
-                        //ingredients.
 
                         val bracket = "["
                         val bracket2 = "]"
@@ -158,7 +163,7 @@ class RecipesActivity : AppCompatActivity() {
                         )
                         recipeItems.add(model)
 
-                        adapter = RecipeAdapter(recipeItems)
+                        adapter = RecipeAdapter(recipeItems,this@RecipesActivity)
                         adapter.notifyDataSetChanged()
                     }
 

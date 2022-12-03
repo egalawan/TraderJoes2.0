@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traderjoes20.Adapters.RandomRecipeAdapter
+import com.example.traderjoes20.adapters.RandomRecipeAdapter
 import com.example.traderjoes20.Listeners.RandomRecipeResponseListener
 import com.example.traderjoes20.Models.RandomRecipeApiResponse
 import kotlinx.coroutines.DelicateCoroutinesApi

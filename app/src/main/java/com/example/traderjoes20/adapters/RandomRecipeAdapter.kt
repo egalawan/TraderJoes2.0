@@ -1,20 +1,21 @@
-package com.example.traderjoes20.Adapters
+package com.example.traderjoes20.adapters
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
-import com.example.traderjoes20.Adapters.RandomRecipeViewHolder
-import android.view.ViewGroup
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.traderjoes20.Models.Recipe
 import com.example.traderjoes20.R
 import com.squareup.picasso.Picasso
-import androidx.cardview.widget.CardView
-import android.widget.TextView
-import com.example.traderjoes20.Models.Recipe
 
-public class RandomRecipeAdapter(var context: Context, var list: List<Recipe>) :
+class RandomRecipeAdapter(var context: Context, var list: List<Recipe>) :
     RecyclerView.Adapter<RandomRecipeViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RandomRecipeViewHolder {
         return RandomRecipeViewHolder(
             LayoutInflater.from(context).inflate(R.layout.list_random_recipe, parent, false)
@@ -27,7 +28,12 @@ public class RandomRecipeAdapter(var context: Context, var list: List<Recipe>) :
         holder.textView_likes.text = list[position].aggregateLikes.toString() + " Likes"
         holder.textView_servings.text = list[position].servings.toString() + " Servings"
         holder.textView_time.text = list[position].readyInMinutes.toString() + " Minutes"
-        Picasso.get().load(list[position].image).into(holder.imageView_food)
+
+        val newImage = list[position].image
+        if (newImage != null) {
+            Log.i("HELLO",newImage)
+        }
+        Picasso.get().load(newImage).into(holder.imageView_food)
     }
 
     override fun getItemCount(): Int {

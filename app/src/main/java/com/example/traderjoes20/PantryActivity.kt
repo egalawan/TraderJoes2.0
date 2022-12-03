@@ -30,7 +30,10 @@ class PantryActivity : AppCompatActivity() {
         // on below line we are adding items to our list
         ItemList.add("Corn on the Cob")
         ItemList.add("Baby Shanghai Bok Choy")
-        //ItemList.add()
+        ItemList.add("Sweet Potato ")
+        ItemList.add("Shiitake Mushrooms ")
+        ItemList.add("Green Onions ")
+        ItemList.add("Super Sweet Fresh Corn ")
 
         // on below line we are initializing adapter for our list view.
         val adapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
@@ -64,7 +67,7 @@ class PantryActivity : AppCompatActivity() {
             "Herbs of provence", " Shishito Peppers ", "Shiitake Mushrooms ", " Organic Brussels Sprouts ", "Organic Sweet Potatoes", "Sweet Potato ", "Steamed Lentils\n", "Wild Arugula ",
             "Green Onions ", "Organic Carrots of Many Colors", "Organic Mini Sweet Peppers", "Organic Baby Spinach & Spring ", " Baby Cauliflower ", "Organic Petite Potato Medley", "Ready Veggies",
             "Baby Shanghai Bok Choy", " Riced Cauliflower ", " Russet Potatoes ", "Sugar Snap Peas", " Organic Red Bell Peppers ",  " Portabella Mushrooms ", "Organic Shredded Kale",
-            "Organic Baby Lettuce Mix ", " Organic Arugula", " Corn on the Cob ",  "Super Sweet Fresh Corn ", "Broccoli & Kale Slaw ", "Organic Persian Cucumbers\n ",
+            "Organic Baby Lettuce Mix ", "Organic Arugula", " Corn on the Cob ",  "Super Sweet Fresh Corn ", "Broccoli & Kale Slaw ", "Organic Persian Cucumbers\n ",
             "Organic Shredded Green & Red ",
             )
 
