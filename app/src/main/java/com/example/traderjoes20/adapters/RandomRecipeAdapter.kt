@@ -1,7 +1,6 @@
 package com.example.traderjoes20.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,9 +29,7 @@ class RandomRecipeAdapter(var context: Context, var list: List<Recipe>) :
         holder.textView_time.text = list[position].readyInMinutes.toString() + " Minutes"
 
         val newImage = list[position].image
-        if (newImage != null) {
-            Log.i("HELLO",newImage)
-        }
+
         Picasso.get().load(newImage).into(holder.imageView_food)
     }
 
