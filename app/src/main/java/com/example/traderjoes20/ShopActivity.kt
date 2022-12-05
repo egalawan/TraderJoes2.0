@@ -94,7 +94,7 @@ class ShopActivity : AppCompatActivity() {
                         val itemName = ingredient.getString("item")
 
                         // ingredient Name
-                        val itemURL = ingredient.getString("item")
+                        val itemURL = jsonArray.getJSONObject(i).getString("url")
 
                         // ingredient price
                         val itemPrice = ingredient.getJSONObject("price")
