@@ -52,7 +52,7 @@
         android:layout_width="378dp"
         android:layout_height="564dp"
         android:layout_gravity="center"
-        android:background="@drawable/my_border">
+        android:background="@drawable/my_border2">
 
     </ListView>
 

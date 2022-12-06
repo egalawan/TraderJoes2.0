@@ -47,10 +47,9 @@
         android:layout_width="326dp"
         android:layout_height="96dp"
         android:layout_marginBottom="13dp"
-        android:autofillHints="username"
-        android:hint="@string/User_Name"
-
-        android:inputType="textPersonName|text"
+        android:autofillHints="Email"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/password"

@@ -21,8 +21,9 @@
             android:layout_width="324dp"
             android:layout_height="59dp"
             android:layout_marginTop="16dp"
-            android:background="@color/background"
+            android:background="@color/cream"
             android:fontFamily="@font/trader_joes"
+            android:layout_gravity="center"
             android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="@color/design_default_color_error"
@@ -33,7 +34,8 @@
             android:layout_width="324dp"
             android:layout_height="59dp"
             android:layout_marginTop="10dp"
-            android:background="@color/background"
+            android:background="@color/cream"
+            android:layout_gravity="center"
             android:fontFamily="@font/trader_joes"
             android:text="@string/name"
             android:textAlignment="center"
@@ -44,7 +46,6 @@
         android:id="@+id/scrollView2"
         android:layout_width="345dp"
         android:layout_height="517dp"
-        android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,11 +61,12 @@
             <TextView
                 android:id="@+id/titleNewUser"
                 android:layout_width="match_parent"
-                android:layout_height="37dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:gravity="center"
                 android:background="@drawable/my_border2"
-                android:layout_gravity="center"
                 android:fontFamily="@font/trader_joes"
                 android:text="@string/Register_New_User"
                 android:textAlignment="center"
@@ -102,24 +104,9 @@
                 android:textColorHint="@color/black" />
 
             <EditText
-                android:id="@+id/username"
-                android:layout_width="343dp"
-                android:layout_height="96dp"
-                android:layout_marginBottom="10dp"
-                android:autofillHints="username"
-                android:background="@drawable/my_border2"
-                android:hint="@string/reg_User_Name2"
-                android:inputType="textPersonName|text"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-
-            <EditText
                 android:id="@+id/reg_password"
                 android:layout_width="343dp"
                 android:layout_height="91dp"
-                android:layout_marginBottom="10dp"
                 android:autofillHints="password"
                 android:background="@drawable/my_border2"
                 android:hint="@string/reg_password"
@@ -127,21 +114,9 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-
-            <EditText
-                android:id="@+id/reg_password2"
-                android:layout_width="343dp"
-                android:layout_height="91dp"
-                android:layout_marginTop="20dp"
-                android:autofillHints="password"
-                android:background="@drawable/my_border2"
-                android:hint="@string/reg_reenter_password"
-                android:inputType="textPassword"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -153,7 +128,7 @@
                     android:id="@+id/backToLogin"
                     android:layout_width="149dp"
                     android:layout_height="65dp"
-                    android:backgroundTint="@color/background"
+                    android:backgroundTint="@color/cream"
                     android:text="@string/Back"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -168,7 +143,7 @@
                     android:id="@+id/btnCreateAccount"
                     android:layout_width="149dp"
                     android:layout_height="65dp"
-                    android:backgroundTint="@color/background"
+                    android:backgroundTint="@color/cream"
                     android:text="@string/Next"
                     android:textColor="@color/black"
                     android:textColorLink="@color/design_default_color_error"
