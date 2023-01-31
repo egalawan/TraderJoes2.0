@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.traderjoes20.Models.Recipe
 import com.example.traderjoes20.databinding.ActivityRecipesBinding
 import kotlinx.coroutines.*
 import org.json.JSONObject
@@ -100,60 +101,24 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                     .use { it.readText() }  // defaults to UTF-8
                 withContext(Dispatchers.Main) {
 
-                    // Convert raw JSON to pretty JSON using GSON library
-                    //val gson = GsonBuilder().setPrettyPrinting().create()
-                    //val prettyJson = gson.toJson(JsonParser.parseString(response))
-                    //Log.d("Pretty Printed JSON :", prettyJson)
-                    // binding.jsonResultsTextview.text = prettyJson
-
                     val jsonObject = JSONTokener(response).nextValue() as JSONObject
 
                     val jsonArray = jsonObject.getJSONArray("recipes")
-                    //array for the strings in ingredients
 
+                    val recipes = mutableListOf<Recipe>()
+                    var filteredRecipes = mutableListOf<Recipe>()
 
                     //jsonArray.length()
                     for (i in 0 until jsonArray.length()) {
                         //getJSONObject(for each i).getString or .getJSONObject
                         //img
                         val img = jsonArray.getJSONObject(i).getString("img")
-                        //Log.i("img: ", img)
-                        /*val allIngredients = ArrayList<String?>()
-                        for (j in 0 until ingredientsArray.length()) {
-                            val ingredient = ingredientsArray.getString(j)
-                            allIngredients.add(ingredient)
-                        }
-                         */
+
                         val ingredientsArray = jsonArray.getJSONObject(i).getJSONArray("ingredients")
                         val ingredients = mutableListOf<String>()
                         for (j in 0 until ingredientsArray.length()) {
                             ingredients.add(ingredientsArray.getString(j))
                         }
-                        //val allIngredientsString = allIngredients.joinToString(", ")
-
-                        //val ingredients = jsonArray.getJSONObject(i).getString("ingredients")
-
-                        /*
-                        val ingredientsJsonArray = jsonObject.getJSONArray("ingredients")
-                        val ingredients = ArrayList<String>()
-                        for(j in 0 until ingredientsJsonArray.length()) {
-                            ingredients.add(ingredientsJsonArray.getString(i))
-                        }
-
-                         */
-
-                        /*
-                        val bracket = "["
-                        val bracket2 = "]"
-                        val comma = ","
-                        val space = ""
-                        val indent = "\n"
-
-                        val newIngredients = ingredients.replace(comma,indent)
-                        val newIng = newIngredients.replace(bracket,space)
-                        val finalIngredients = newIng.replace(bracket2,space)
-
-                         */
 
                         // serves
                         val serves = jsonArray.getJSONObject(i).getString("serves")
@@ -194,8 +159,8 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                         adapter = RecipeAdapter(recipeItems,this@RecipesActivity)
                         adapter.notifyDataSetChanged()
                     }
-
                     binding.recyclerView.adapter = adapter
+
                 }
             } else {
                 Log.e("HTTPURLCONNECTION_ERROR", responseCode.toString())

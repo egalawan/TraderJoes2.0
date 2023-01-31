@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cream"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:orientation="vertical">
         <!--items for a single row of RecyclerView-->
 
         <TextView
@@ -50,8 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/cream"
-                android:orientation="vertical"
-                android:paddingStart="15dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="4 - 7"
                     android:textColor="#000"
+                    android:layout_marginStart="10dp"
                     android:textSize="23sp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,6 +83,7 @@
                     android:id="@+id/Recipe_prepTime_Textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="e9999999999"
                     android:textColor="#000"
                     android:textSize="23sp" />
@@ -103,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 mins"
+                    android:layout_marginStart="10dp"
                     android:textColor="#000"
                     android:textSize="23sp" />
 
@@ -124,6 +125,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/cream"
                     android:text="e9999999999"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/black"
                     android:padding="5dp"
                     android:textSize="20sp" />
@@ -147,6 +149,7 @@
                     android:background="@color/cream"
                     android:padding="5dp"
                     android:text="e9999999999"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />

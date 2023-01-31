@@ -28,19 +28,29 @@ class RecipeActivity : AppCompatActivity(){
         recipeImageView = findViewById(R.id.Recipe_ImageView)
 
         val bundle : Bundle? = intent.extras
+        val title = bundle?.getString("title")
 
-        val ingredients = bundle?.getString("ingredients")
-        val ingredientsList = ingredients?.split("\n")
         val img = bundle?.getString("img")
         val serves = bundle?.getString("serves")
-        val title = bundle?.getString("title")
+
         val cookingTime = bundle?.getString("cookingTime")
         val prepTime = bundle?.getString("prepTime")
 
         recipeTitle.text = title
-        recipeServes.text = serves
-        recipeCookingTime.text = cookingTime
-        recipePrepTime.text = prepTime
+        recipeServes.text = if (serves?.trim()?.isEmpty() == true) "-" else serves
+        recipeCookingTime.text = if (cookingTime?.trim()?.isEmpty() == true) "-" else cookingTime
+        recipePrepTime.text = if (prepTime?.trim()?.isEmpty() == true) "-" else prepTime
+
+
+        val ingredients = bundle?.getString("ingredients")
+        val ingredientsList = ingredients?.split("\n")
+        val formattedIngredients = StringBuilder()
+        if (ingredientsList != null) {
+            for (ingredient in ingredientsList) {
+                formattedIngredients.append("- $ingredient\n")
+            }
+            recipeIngredients.text = formattedIngredients.toString()
+        }
 
         //for directions
         val directions = bundle?.getString("directions")
@@ -54,13 +64,7 @@ class RecipeActivity : AppCompatActivity(){
         recipeDirections.text = formattedDirections.toString()
 
         //
-        val formattedIngredients = StringBuilder()
-        if (ingredientsList != null) {
-            for (ingredient in ingredientsList) {
-                formattedIngredients.append("- $ingredient\n")
-            }
-            recipeIngredients.text = formattedIngredients.toString()
-        }
+
         Picasso.get().load(img)
             .placeholder(R.drawable.first_food)
             .into(recipeImageView)
