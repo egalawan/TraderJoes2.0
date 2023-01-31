@@ -8,10 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.databinding.AllRecipesBinding
 import com.squareup.picasso.Picasso
-
-class RecipeAdapter(
+import kotlinx.coroutines.DelicateCoroutinesApi
+/*
+    main recipe hub page
+     */
+class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
     private val recipe: ArrayList<Recipes>,
-    private val listener: OnItemClickListener //can set to RecipeActivity but if want to reuse use the interface we created because you can pass any object that implements this
+    private val listener: RecipesActivity
+    //can set to RecipeActivity but if want to reuse use the interface we created because you can pass any object that implements this
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -21,14 +25,25 @@ class RecipeAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        /*
+        Shows what is on the Recipe Hub page
+         */
         val recipeViewHolder = holder as RecipeAdapter.RecipeViewHolder
         val url = recipe[position].img
         //Log.i("Url: ", url)
 
         //Picasso.get().load(url).into(recipeViewHolder.recipeImageView)
         Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
+        //val ingredientsString= recipe[position].ingredients!!.joinToString("\n- ")
+        //recipeViewHolder.recipeIngredientsTextview.text = ingredientsString
 
-        recipeViewHolder.recipeIngredientsTextview.text = recipe[position].ingredients
+        //recipeViewHolder.recipeIngredientsTextview.text = recipe[position].ingredients.toString()
+        val ingredientsString = StringBuilder()
+        for (ingredient in recipe[position].ingredients) {
+            ingredientsString.append("- $ingredient\n")
+        }
+        recipeViewHolder.recipeIngredientsTextview.text = ingredientsString.toString()
+
         recipeViewHolder.recipeTitleTextview.text = recipe[position].title
         //recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
         //recipeViewHolder.viewBinding.RecipeServesTextview.text = recipe[position].serves
@@ -55,6 +70,7 @@ class RecipeAdapter(
             //viewBinding.RecipeDirectionsTextview.setOnClickListener(this)
         }
 
+        @OptIn(DelicateCoroutinesApi::class)
         override fun onClick(v: View?) {
             val position = absoluteAdapterPosition
             if(position != RecyclerView.NO_POSITION) {

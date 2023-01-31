@@ -23,6 +23,7 @@
                 android:fontFamily="@font/trader_joes"
                 android:text="Item Name: "
                 android:paddingStart="10dp"
+                android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
@@ -30,17 +31,23 @@
                 android:id="@+id/item_name_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lorem Ipsum"
-                android:paddingLeft="5dp"
-                android:gravity="center"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:fontFamily="@font/trader_joes"
-                android:textColor="@android:color/white" />
+                android:gravity="center"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:orientation="horizontal">
 
 
@@ -49,7 +56,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:padding="5dp"
                 app:srcCompat="@drawable/first_food" />
 
             <LinearLayout
@@ -65,18 +71,21 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="48dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ID: "
+                        android:layout_marginTop="5dp"
                         android:textColor="@android:color/white"
-                        android:textSize="17sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/item_id_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:text="Lorem Ipsum"
+                        android:textSize="20sp"
                         android:textColor="@android:color/white"/>
 
 
@@ -92,6 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Price: "
+                        android:textSize="20sp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
@@ -99,6 +109,7 @@
                         android:id="@+id/item_price_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20sp"
                         android:text="Lorem Ipsum"
                         android:textColor="@android:color/white"/>
 
@@ -115,6 +126,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Weight: "
+                        android:textSize="20sp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
@@ -123,14 +135,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lorem Ipsum"
+                        android:textSize="20sp"
                         android:textColor="@android:color/white"/>
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/btnAddtoPantry"
                     android:layout_width="179dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/background"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
                     android:text="Add to Pantry" />
             </LinearLayout>
         </LinearLayout>

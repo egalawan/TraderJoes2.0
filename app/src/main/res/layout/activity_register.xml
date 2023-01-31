@@ -74,26 +74,11 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/PersonName"
-                android:layout_width="343dp"
-                android:layout_height="92dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/my_border2"
-                android:ems="10"
-                android:hint="@string/full_name"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black" />
-
-            <EditText
                 android:id="@+id/editTextTextEmailAddress2"
                 android:layout_width="343dp"
                 android:layout_height="96dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/my_border2"
+                android:background="@color/background"
                 android:ems="20"
                 android:hint="@string/email_address"
                 android:importantForAutofill="no"
@@ -108,7 +93,7 @@
                 android:layout_width="343dp"
                 android:layout_height="91dp"
                 android:autofillHints="password"
-                android:background="@drawable/my_border2"
+                android:background="@color/background"
                 android:hint="@string/reg_password"
                 android:inputType="textPassword"
                 android:paddingStart="5dp"

@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.databinding.CellBinding
 import com.squareup.picasso.Picasso
 
-class RVAdapter(private val cell: ArrayList<Cell>) :
+class RVAdapter(
+    private val cell: ArrayList<Cell>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ItemViewHolder(var viewBinding: CellBinding) : RecyclerView.ViewHolder(viewBinding.root)

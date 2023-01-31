@@ -28,26 +28,41 @@ class RecipeActivity : AppCompatActivity(){
         recipeImageView = findViewById(R.id.Recipe_ImageView)
 
         val bundle : Bundle? = intent.extras
-        val directions = bundle!!.getString("directions")
-        val ingredients = bundle!!.getString("ingredients")
-        val img = bundle!!.getString("img")
-        //Log.i("HELLOOOOO",img.toString())
-        val serves = bundle!!.getString("serves")
-        val title = bundle!!.getString("title")
-        val cookingTime = bundle!!.getString("cookingTime")
-        val prepTime = bundle!!.getString("prepTime")
+
+        val ingredients = bundle?.getString("ingredients")
+        val ingredientsList = ingredients?.split("\n")
+        val img = bundle?.getString("img")
+        val serves = bundle?.getString("serves")
+        val title = bundle?.getString("title")
+        val cookingTime = bundle?.getString("cookingTime")
+        val prepTime = bundle?.getString("prepTime")
 
         recipeTitle.text = title
         recipeServes.text = serves
         recipeCookingTime.text = cookingTime
         recipePrepTime.text = prepTime
-        recipeDirections.text = directions
-        recipeIngredients.text = ingredients
-        //Log.i("img", img.toString())
-        //recipeImage.setImageResource(img.toInt())
+
+        //for directions
+        val directions = bundle?.getString("directions")
+        val directionsList = directions?.split("\n")
+        val formattedDirections = StringBuilder()
+        for ((index, direction) in directionsList!!.withIndex()) {
+            if (direction.isNotEmpty() && direction != ".") {
+                formattedDirections.append("${index + 1}. $direction\n")
+            }
+        }
+        recipeDirections.text = formattedDirections.toString()
+
+        //
+        val formattedIngredients = StringBuilder()
+        if (ingredientsList != null) {
+            for (ingredient in ingredientsList) {
+                formattedIngredients.append("- $ingredient\n")
+            }
+            recipeIngredients.text = formattedIngredients.toString()
+        }
         Picasso.get().load(img)
             .placeholder(R.drawable.first_food)
             .into(recipeImageView)
-
     }
 }

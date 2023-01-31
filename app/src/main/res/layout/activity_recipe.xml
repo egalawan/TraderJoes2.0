@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:background="@color/background">
+    android:background="@color/cream">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
+        android:background="@color/cream"
         android:orientation="vertical"
         android:padding="10dp">
         <!--items for a single row of RecyclerView-->
@@ -21,120 +21,137 @@
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_gravity="center"
-            android:background="@drawable/my_border"
             android:fontFamily="@font/trader_joes"
             android:gravity="center"
-            android:paddingStart="3dp"
-            android:paddingEnd="3dp"
+            android:padding="15dp"
             android:text="Name"
-            android:textColor="#000"
-            android:textSize="20sp" />
+            android:textColor="@color/red"
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/Recipe_ImageView"
-            android:layout_width="339dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@color/background" />
+            android:padding="5dp"
+            android:background="@drawable/backgroundwithborder"
+            tools:srcCompat="@tools:sample/avatars"/>
+
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
+            android:layout_width="366dp"
+            android:layout_height="461dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/cream"
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cream"
                 android:orientation="vertical"
-                android:background="@color/background">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/trader_joes"
-                android:text="Serves:"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:paddingStart="15dp">
 
-            <TextView
-                android:id="@+id/Recipe_serves_Textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4 - 7"
-                android:textColor="#000"
-                android:textSize="23sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/trader_joes"
+                    android:text="Serves:"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/trader_joes"
-                android:text="Cooking Time:"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/Recipe_serves_Textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 - 7"
+                    android:textColor="#000"
+                    android:textSize="23sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/trader_joes"
+                    android:text="PrepTime:"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/Recipe_cookingTime_Textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="5 mins"
-                android:textColor="#000"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/Recipe_prepTime_Textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="e9999999999"
+                    android:textColor="#000"
+                    android:textSize="23sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/trader_joes"
-                android:text="PrepTime:"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/trader_joes"
+                    android:layout_marginBottom="3dp"
+                    android:text="Cooking Time:"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/Recipe_prepTime_Textview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="e9999999999"
-                android:textColor="#000"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/Recipe_cookingTime_Textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 mins"
+                    android:textColor="#000"
+                    android:textSize="23sp" />
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/trader_joes"
-                android:text="Directions"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/text_viewIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/trader_joes"
+                    android:text="Ingredients"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/Recipe_directions_Textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:text="e9999999999"
-                android:textColor="@color/black"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/Recipe_ingredients_Textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cream"
+                    android:text="e9999999999"
+                    android:textColor="@color/black"
+                    android:padding="5dp"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/text_viewIngredients"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/trader_joes"
-                android:text="Ingredients"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/trader_joes"
+                    android:text="Directions"
+                    android:layout_marginBottom="3dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/Recipe_ingredients_Textview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:text="e9999999999"
-                android:textColor="@color/black"
-                android:textSize="23sp" />
+                <TextView
+                    android:id="@+id/Recipe_directions_Textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cream"
+                    android:padding="5dp"
+                    android:text="e9999999999"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -16,6 +16,9 @@ import java.net.URL
 import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
+/*
+    main recipe hub page
+     */
 
 @DelicateCoroutinesApi
 class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
@@ -37,12 +40,18 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        //Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-        //val clickItem = recipeItems[position]
-        //clickItem.ingredients = "Clicked"
+        /*
+        This is the code for when one of the recipes is clicked
+
+        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val clickItem = recipeItems[position]
+        clickItem.ingredients = "Clicked"
+         */
         val intent = Intent(this@RecipesActivity, RecipeActivity::class.java)
         intent.putExtra("directions", recipeItems[position].directions)
-        intent.putExtra("ingredients", recipeItems[position].ingredients)
+        val ingredientsString = recipeItems[position].ingredients.joinToString("\n")
+        intent.putExtra("ingredients", ingredientsString)
+        //intent.putExtra("ingredients", recipeItems[position].ingredients as ArrayList<String>)
         intent.putExtra("img", recipeItems[position].img)
         intent.putExtra("serves", recipeItems[position].serves)
         intent.putExtra("title", recipeItems[position].title)
@@ -100,6 +109,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                     val jsonObject = JSONTokener(response).nextValue() as JSONObject
 
                     val jsonArray = jsonObject.getJSONArray("recipes")
+                    //array for the strings in ingredients
 
 
                     //jsonArray.length()
@@ -108,9 +118,31 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                         //img
                         val img = jsonArray.getJSONObject(i).getString("img")
                         //Log.i("img: ", img)
+                        /*val allIngredients = ArrayList<String?>()
+                        for (j in 0 until ingredientsArray.length()) {
+                            val ingredient = ingredientsArray.getString(j)
+                            allIngredients.add(ingredient)
+                        }
+                         */
+                        val ingredientsArray = jsonArray.getJSONObject(i).getJSONArray("ingredients")
+                        val ingredients = mutableListOf<String>()
+                        for (j in 0 until ingredientsArray.length()) {
+                            ingredients.add(ingredientsArray.getString(j))
+                        }
+                        //val allIngredientsString = allIngredients.joinToString(", ")
 
-                        val ingredients = jsonArray.getJSONObject(i).getString("ingredients")
+                        //val ingredients = jsonArray.getJSONObject(i).getString("ingredients")
 
+                        /*
+                        val ingredientsJsonArray = jsonObject.getJSONArray("ingredients")
+                        val ingredients = ArrayList<String>()
+                        for(j in 0 until ingredientsJsonArray.length()) {
+                            ingredients.add(ingredientsJsonArray.getString(i))
+                        }
+
+                         */
+
+                        /*
                         val bracket = "["
                         val bracket2 = "]"
                         val comma = ","
@@ -120,6 +152,8 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                         val newIngredients = ingredients.replace(comma,indent)
                         val newIng = newIngredients.replace(bracket,space)
                         val finalIngredients = newIng.replace(bracket2,space)
+
+                         */
 
                         // serves
                         val serves = jsonArray.getJSONObject(i).getString("serves")
@@ -146,8 +180,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                         val model = Recipes(
                             img,
                             //tagId,
-                            //name,
-                            finalIngredients,
+                            ingredients,
                             serves,
                             tagIds,
                             title,
@@ -169,6 +202,5 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
             }
         }
     }
-
 }
 

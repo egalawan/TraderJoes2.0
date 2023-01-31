@@ -7,19 +7,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traderjoes20.adapters.RandomRecipeAdapter
 import com.example.traderjoes20.Listeners.RandomRecipeResponseListener
 import com.example.traderjoes20.Models.RandomRecipeApiResponse
+import com.example.traderjoes20.adapters.RandomRecipeAdapter
 import kotlinx.coroutines.DelicateCoroutinesApi
 
 @DelicateCoroutinesApi
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     private var manager: RequestManager? = null
     var randomRecipeAdapter: RandomRecipeAdapter? = null
     var recyclerView: RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
         manager = RequestManager(this)
         manager!!.getRandomRecipes(randomRecipeResponseListener)
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         //each button functionality
         val buttonToPantry = findViewById<Button>(R.id.btnMyPantry)
         buttonToPantry.setOnClickListener{
-            val intent = Intent(this, PantryActivity::class.java)
+            val intent = Intent(this, MyPantryActivity::class.java)
             startActivity(intent)
         }
 
@@ -49,14 +49,14 @@ class MainActivity : AppCompatActivity() {
             override fun didFetch(response: RandomRecipeApiResponse?, message: String?) {
                 recyclerView = findViewById(R.id.recycler_random)
                 recyclerView!!.setHasFixedSize(true)
-                recyclerView!!.layoutManager = GridLayoutManager(this@MainActivity, 1)
+                recyclerView!!.layoutManager = GridLayoutManager(this@HomeActivity, 1)
                 randomRecipeAdapter =
-                    response!!.recipes?.let { RandomRecipeAdapter(this@MainActivity, it) }
+                    response!!.recipes?.let { RandomRecipeAdapter(this@HomeActivity, it) }
                 recyclerView!!.adapter = randomRecipeAdapter
             }
 
             override fun didError(message: String?) {
-                Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeActivity, message, Toast.LENGTH_SHORT).show()
             }
         }
 }

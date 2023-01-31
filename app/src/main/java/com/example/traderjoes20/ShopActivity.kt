@@ -8,19 +8,17 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityShopBinding
-import com.google.gson.GsonBuilder
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
 import java.net.URL
-import java.util.*
 import javax.net.ssl.HttpsURLConnection
 
 @DelicateCoroutinesApi
-class ShopActivity : AppCompatActivity() {
+class ShopActivity : AppCompatActivity(){
 
     var itemsArray: ArrayList<Cell> = ArrayList()
-    lateinit var adapter: RVAdapter
+    private lateinit var adapter: RVAdapter
 
     private lateinit var binding: ActivityShopBinding
 
@@ -37,6 +35,7 @@ class ShopActivity : AppCompatActivity() {
         parseJSON()
     }
 
+
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.jsonResultsRecyclerview.layoutManager = layoutManager
@@ -51,7 +50,7 @@ class ShopActivity : AppCompatActivity() {
         binding.jsonResultsRecyclerview.addItemDecoration(dividerItemDecoration)
     }
 
-    @SuppressLint("LongLogTag")
+    @SuppressLint("LongLogTag", "NotifyDataSetChanged")
     private fun parseJSON() {
         GlobalScope.launch(Dispatchers.IO) {
             val url =
@@ -73,7 +72,7 @@ class ShopActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
 
                     // Convert raw JSON to pretty JSON using GSON library
-                    val gson = GsonBuilder().setPrettyPrinting().create()
+                    //val gson = GsonBuilder().setPrettyPrinting().create()
                     //val prettyJson = gson.toJson(JsonParser.parseString(response))
                     //Log.d("Pretty Printed JSON :", prettyJson)
                    // binding.jsonResultsTextview.text = prettyJson

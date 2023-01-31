@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background"
+    tools:context=".MyPantryActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/my_border2"
+            android:fontFamily="@font/trader_joes"
+            android:gravity="center"
+            android:text="My Pantry"
+            android:textColor="@color/red"
+            android:textSize="35sp" />
+
+    <ListView
+        android:id="@+id/pantryList"
+        android:layout_width="384dp"
+        android:layout_height="508dp"
+        android:layout_gravity="center"
+        android:background="@drawable/my_border2">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="382dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/AddItem"
+            android:layout_width="254dp"
+            android:layout_height="37dp"
+            android:layout_margin="4dp"
+            android:background="@color/cream"
+            android:paddingStart="10dp"
+            android:paddingEnd="5dp"
+            android:layout_gravity="center"
+            android:hint="Enter item name">
+
+        </EditText>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:text="@string/add" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnGroceryList"
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/grocery_list" />
+
+</LinearLayout>

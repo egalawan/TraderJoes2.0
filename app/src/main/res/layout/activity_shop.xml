@@ -12,20 +12,27 @@
         android:layout_gravity="center"
         android:background="@drawable/my_border2"
         android:fontFamily="@font/trader_joes"
-        android:paddingTop="15dp"
         android:text="Trader Joes"
-        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
         android:textAlignment="center"
         android:textColor="@color/red"
         android:textSize="30sp"
         android:textStyle="bold" />
 
+    <SearchView
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@color/cream" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/json_results_recyclerview"
-        android:layout_width="359dp"
-        android:layout_height="611dp"
+        android:layout_width="374dp"
+        android:layout_height="513dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_weight="1"
         android:background="@drawable/my_border" />
 

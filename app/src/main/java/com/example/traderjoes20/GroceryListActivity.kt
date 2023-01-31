@@ -6,11 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.traderjoes20.databinding.ActivityPantryBinding
+import com.example.traderjoes20.databinding.ActivityListgroceryBinding
 
-class PantryActivity : AppCompatActivity() {
+class GroceryListActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPantryBinding
+    private lateinit var binding: ActivityListgroceryBinding
     lateinit var ItemView: ListView
     lateinit var addBtn: Button
     lateinit var itemEdt: EditText
@@ -19,7 +19,7 @@ class PantryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityPantryBinding.inflate(layoutInflater)
+        binding = ActivityListgroceryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // on below line we are initializing our variables.
         ItemView = findViewById(R.id.userlist)
@@ -37,7 +37,7 @@ class PantryActivity : AppCompatActivity() {
 
         // on below line we are initializing adapter for our list view.
         val adapter: ArrayAdapter<String?> = ArrayAdapter<String?>(
-            this@PantryActivity,
+            this@GroceryListActivity,
             android.R.layout.simple_list_item_1,
             ItemList as List<String?>
         )
@@ -61,19 +61,6 @@ class PantryActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
         }
-
-        val arrayAdapter: ArrayAdapter<*>
-        val items = arrayOf("Apple","Orange","Organic Banana","Water Melon", "Apricot", "Pineapple", "Mangos", "Campari Tomatoes", "Organic Strawberries 1 Lb ", "Strawberries 2 Lb ", "Strawberries 1 Lb", "Organic Bananas",
-            "Herbs of provence", " Shishito Peppers ", "Shiitake Mushrooms ", " Organic Brussels Sprouts ", "Organic Sweet Potatoes", "Sweet Potato ", "Steamed Lentils\n", "Wild Arugula ",
-            "Green Onions ", "Organic Carrots of Many Colors", "Organic Mini Sweet Peppers", "Organic Baby Spinach & Spring ", " Baby Cauliflower ", "Organic Petite Potato Medley", "Ready Veggies",
-            "Baby Shanghai Bok Choy", " Riced Cauliflower ", " Russet Potatoes ", "Sugar Snap Peas", " Organic Red Bell Peppers ",  " Portabella Mushrooms ", "Organic Shredded Kale",
-            "Organic Baby Lettuce Mix ", "Organic Arugula", " Corn on the Cob ",  "Super Sweet Fresh Corn ", "Broccoli & Kale Slaw ", "Organic Persian Cucumbers\n ",
-            "Organic Shredded Green & Red ",
-            )
-
-        //val mListView = findViewById<ListView>(R.id.userlist)
-        //arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
-        //mListView.adapter = arrayAdapter
 
     }
 }
