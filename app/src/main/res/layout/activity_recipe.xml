@@ -27,19 +27,9 @@
             android:textColor="@color/red"
             android:textSize="30sp" />
 
-        <ImageView
-            android:id="@+id/Recipe_ImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            android:background="@drawable/backgroundwithborder"
-            tools:srcCompat="@tools:sample/avatars"/>
-
         <ScrollView
-            android:layout_width="366dp"
-            android:layout_height="461dp"
+            android:layout_width="357dp"
+            android:layout_height="610dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@color/cream"
@@ -51,11 +41,22 @@
                 android:background="@color/cream"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:id="@+id/Recipe_ImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/backgroundwithborder"
+                    android:padding="5dp"
+                    tools:srcCompat="@tools:sample/avatars" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
                     android:fontFamily="@font/trader_joes"
                     android:text="Serves:"
                     android:textColor="@color/black"
@@ -65,10 +66,11 @@
                     android:id="@+id/Recipe_serves_Textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:text="4 - 7"
                     android:textColor="#000"
-                    android:layout_marginStart="10dp"
                     android:textSize="23sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,8 +94,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/trader_joes"
                     android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/trader_joes"
                     android:text="Cooking Time:"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
@@ -102,8 +104,8 @@
                     android:id="@+id/Recipe_cookingTime_Textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5 mins"
                     android:layout_marginStart="10dp"
+                    android:text="5 mins"
                     android:textColor="#000"
                     android:textSize="23sp" />
 
@@ -112,9 +114,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
                     android:layout_marginBottom="3dp"
                     android:fontFamily="@font/trader_joes"
+                    android:paddingTop="5dp"
                     android:text="Ingredients"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
@@ -123,11 +125,11 @@
                     android:id="@+id/Recipe_ingredients_Textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/cream"
-                    android:text="e9999999999"
                     android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
+                    android:background="@color/cream"
                     android:padding="5dp"
+                    android:text="e9999999999"
+                    android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <TextView
@@ -135,10 +137,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:fontFamily="@font/trader_joes"
-                    android:text="Directions"
                     android:layout_marginBottom="3dp"
+                    android:fontFamily="@font/trader_joes"
                     android:paddingTop="5dp"
+                    android:text="Directions"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
 
@@ -146,11 +148,11 @@
                     android:id="@+id/Recipe_directions_Textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@color/cream"
                     android:padding="5dp"
                     android:text="e9999999999"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginBottom="20dp"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 

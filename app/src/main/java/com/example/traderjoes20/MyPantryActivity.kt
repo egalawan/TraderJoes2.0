@@ -1,37 +1,60 @@
 package com.example.traderjoes20
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ListView
+import android.util.Log
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MyPantryActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
+    private lateinit var database: DatabaseReference
+
+    private var adapter: ArrayAdapter<String>? = null
+    private var items = ArrayList<String>()
+    private lateinit var userId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_pantry)
+        userId = FirebaseAuth.getInstance().currentUser!!.uid
+        database = FirebaseDatabase.getInstance().reference
 
-        val arrayAdapter: ArrayAdapter<*>
+        val pantryList = findViewById<ListView>(R.id.pantryList)
+        val addItem = findViewById<EditText>(R.id.AddItem)
+        val addButton = findViewById<Button>(R.id.button)
 
-        val items = arrayOf("Apple","Orange","Organic Banana","Water Melon", "Apricot", "Pineapple", "Mangos", "Campari Tomatoes", "Organic Strawberries 1 Lb ", "Strawberries 2 Lb ", "Strawberries 1 Lb", "Organic Bananas",
-            "Herbs of provence", " Shishito Peppers ", "Shiitake Mushrooms ", " Organic Brussels Sprouts ", "Organic Sweet Potatoes", "Sweet Potato ", "Steamed Lentils\n", "Wild Arugula ",
-            "Green Onions ", "Organic Carrots of Many Colors", "Organic Mini Sweet Peppers", "Organic Baby Spinach & Spring ", " Baby Cauliflower ", "Organic Petite Potato Medley", "Ready Veggies",
-            "Baby Shanghai Bok Choy", " Riced Cauliflower ", " Russet Potatoes ", "Sugar Snap Peas", " Organic Red Bell Peppers ",  " Portabella Mushrooms ", "Organic Shredded Kale",
-            "Organic Baby Lettuce Mix ", "Organic Arugula", " Corn on the Cob ",  "Super Sweet Fresh Corn ", "Broccoli & Kale Slaw ", "Organic Persian Cucumbers\n ",
-            "Organic Shredded Green & Red ",
-        )
+        val items = mutableListOf<String>()
+        val adapter = PantryListAdapter(this, items)
+        pantryList.adapter = adapter
 
-        val mListView = findViewById<ListView>(R.id.pantryList)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
-        mListView.adapter = arrayAdapter
-        //From My Pantry to Grocery List
-        val buttonToGroceryList = findViewById<Button>(R.id.btnGroceryList)
-        buttonToGroceryList.setOnClickListener{
-            val intent = Intent(this, GroceryListActivity::class.java)
-            startActivity(intent)
+
+        database.child("pantry").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                items.clear()
+                for (ds in dataSnapshot.children) {
+                    val item = ds.getValue(String::class.java)
+                    items.add(item!!)
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
+            }
+        })
+
+        addButton.setOnClickListener {
+            val item = addItem.text.toString()
+            database.child("pantry").push().setValue(item)
+            addItem.text.clear()
+            Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
+        }
+
+        val btnGroceryList = findViewById<Button>(R.id.btnGroceryList)
+        btnGroceryList.setOnClickListener {
+            startActivity(Intent(this, GroceryListActivity::class.java))
         }
     }
 }

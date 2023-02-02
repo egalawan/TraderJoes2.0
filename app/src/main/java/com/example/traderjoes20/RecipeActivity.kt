@@ -37,9 +37,9 @@ class RecipeActivity : AppCompatActivity(){
         val prepTime = bundle?.getString("prepTime")
 
         recipeTitle.text = title
-        recipeServes.text = if (serves?.trim()?.isEmpty() == true) "-" else serves
-        recipeCookingTime.text = if (cookingTime?.trim()?.isEmpty() == true) "-" else cookingTime
-        recipePrepTime.text = if (prepTime?.trim()?.isEmpty() == true) "-" else prepTime
+        recipeServes.text = if (serves?.trim()?.isEmpty() == true) "n/a" else serves
+        recipeCookingTime.text = if (cookingTime?.trim()?.isEmpty() == true) "n/a" else cookingTime
+        recipePrepTime.text = if (prepTime?.trim()?.isEmpty() == true) "n/a" else prepTime
 
 
         val ingredients = bundle?.getString("ingredients")

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/cream"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".LoginActivity">
@@ -79,7 +79,7 @@
         android:layout_width="167dp"
         android:layout_height="55dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/background"
+        android:background="@color/cream"
         android:fontFamily="@font/trader_joes"
         android:paddingTop="5dp"
         android:text="@string/Login"
