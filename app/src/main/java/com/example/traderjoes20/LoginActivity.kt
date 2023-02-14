@@ -84,6 +84,8 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+
+    //unused code below
     private fun performSignUp(){
         val email = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)

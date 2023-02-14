@@ -43,14 +43,16 @@ class RegisterActivity : AppCompatActivity() {
 
     }
     private fun performSignUp() {
-        val email = findViewById<EditText>(R.id.editTextTextEmailAddress2)
+        val name = findViewById<EditText>(R.id.editTextUsername)
+        val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val password = findViewById<EditText>(R.id.reg_password)
 
-        if (email.text.isEmpty() || password.text.isEmpty()) {
+        if (name.text.isEmpty() || email.text.isEmpty() || password.text.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT)
                 .show()
             return
         }
+        val inputName = name.text.toString()
         val inputEmail = email.text.toString()
         val inputPassword = password.text.toString()
 

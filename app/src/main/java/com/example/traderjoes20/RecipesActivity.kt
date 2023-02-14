@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.traderjoes20.Models.Recipe
 import com.example.traderjoes20.databinding.ActivityRecipesBinding
 import kotlinx.coroutines.*
 import org.json.JSONObject
@@ -20,7 +19,6 @@ import javax.net.ssl.HttpsURLConnection
 /*
     main recipe hub page
      */
-
 @DelicateCoroutinesApi
 class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
 
@@ -105,9 +103,6 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
 
                     val jsonArray = jsonObject.getJSONArray("recipes")
 
-                    val recipes = mutableListOf<Recipe>()
-                    var filteredRecipes = mutableListOf<Recipe>()
-
                     //jsonArray.length()
                     for (i in 0 until jsonArray.length()) {
                         //getJSONObject(for each i).getString or .getJSONObject
@@ -157,7 +152,9 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                         recipeItems.add(model)
 
                         adapter = RecipeAdapter(recipeItems,this@RecipesActivity)
-                        adapter.notifyDataSetChanged()
+                        binding.recyclerView.post {
+                            adapter.notifyDataSetChanged()
+                        }
                     }
                     binding.recyclerView.adapter = adapter
 

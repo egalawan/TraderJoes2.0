@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:id="@+id/this_linearLayout"
     android:layout_height="match_parent"
@@ -31,12 +32,36 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="369dp"
-        android:clickable="true"
-        android:layout_height="585dp"
+        android:layout_height="503dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@color/background"
+        android:clickable="true"
         android:focusable="true" />
+
+    <LinearLayout
+        android:layout_width="196dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/left_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/left_arrow" />
+
+        <ImageButton
+            android:id="@+id/right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/right_arrow" />
+    </LinearLayout>
 
 
 </LinearLayout>

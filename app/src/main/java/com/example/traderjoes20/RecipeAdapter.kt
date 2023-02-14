@@ -10,7 +10,7 @@ import com.example.traderjoes20.databinding.AllRecipesBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
 /*
-    main recipe hub page
+    On Click next Page after Recipe Hub
      */
 class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
     private val recipe: ArrayList<Recipes>,
@@ -30,20 +30,13 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
          */
         val recipeViewHolder = holder as RecipeAdapter.RecipeViewHolder
         val url = recipe[position].img
-        //Log.i("Url: ", url)
 
-        //Picasso.get().load(url).into(recipeViewHolder.recipeImageView)
         Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
-        //val ingredientsString= recipe[position].ingredients!!.joinToString("\n- ")
-        //recipeViewHolder.recipeIngredientsTextview.text = ingredientsString
-
-        //recipeViewHolder.recipeIngredientsTextview.text = recipe[position].ingredients.toString()
         val ingredientsString = StringBuilder()
         for (ingredient in recipe[position].ingredients) {
             ingredientsString.append("- $ingredient\n")
         }
         recipeViewHolder.recipeIngredientsTextview.text = ingredientsString.toString()
-
         recipeViewHolder.recipeTitleTextview.text = recipe[position].title
         //recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
         //recipeViewHolder.viewBinding.RecipeServesTextview.text = recipe[position].serves
@@ -78,10 +71,13 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
             }
         }
     }
-    //names for interface and fun dont matter, function*
     //when you have interface OnItemClickListener you need to the fun onItemClick
     interface OnItemClickListener{
         fun onItemClick(position: Int)
+    }
+    fun updateData(newData: List<Recipes>) {
+        var recipe = newData
+        notifyDataSetChanged()
     }
 }
 

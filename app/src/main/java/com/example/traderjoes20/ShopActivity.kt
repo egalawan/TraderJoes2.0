@@ -27,10 +27,6 @@ class ShopActivity : AppCompatActivity(){
         binding = ActivityShopBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // Clean TextViews
-        //binding.jsonResultsTextview.text = ""
-
         setupRecyclerView()
         parseJSON()
     }

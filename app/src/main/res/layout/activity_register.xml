@@ -42,21 +42,24 @@
             android:textColor="@color/black"
             android:textSize="45sp" />
     </LinearLayout>
+
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="345dp"
-        android:layout_height="517dp"
+        android:layout_width="346dp"
+        android:layout_height="495dp"
+        android:layout_marginBottom="32dp"
+        android:foregroundGravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/red">
+            android:background="@color/red"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/titleNewUser"
@@ -65,17 +68,32 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:gravity="center"
                 android:background="@drawable/my_border2"
                 android:fontFamily="@font/trader_joes"
+                android:gravity="center"
                 android:text="@string/Register_New_User"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress2"
+                android:id="@+id/editTextUsername"
                 android:layout_width="343dp"
+                android:layout_height="96dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/background"
+                android:ems="20"
+                android:hint="Insert Full Name"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black" />
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/background"
@@ -143,7 +161,6 @@
 
         </LinearLayout>
     </ScrollView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

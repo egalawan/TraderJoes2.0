@@ -3,7 +3,10 @@ package com.example.traderjoes20
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -11,9 +14,6 @@ import com.google.firebase.database.*
 class MyPantryActivity : AppCompatActivity() {
 
     private lateinit var database: DatabaseReference
-
-    private var adapter: ArrayAdapter<String>? = null
-    private var items = ArrayList<String>()
     private lateinit var userId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +21,7 @@ class MyPantryActivity : AppCompatActivity() {
         userId = FirebaseAuth.getInstance().currentUser!!.uid
         database = FirebaseDatabase.getInstance().reference
 
+        //each "item" in the MyPantry View
         val pantryList = findViewById<ListView>(R.id.pantryList)
         val addItem = findViewById<EditText>(R.id.AddItem)
         val addButton = findViewById<Button>(R.id.button)
@@ -29,8 +30,13 @@ class MyPantryActivity : AppCompatActivity() {
         val adapter = PantryListAdapter(this, items)
         pantryList.adapter = adapter
 
+        //sends to firebase console
+        database = FirebaseDatabase.getInstance().reference
+            .child("users")
+            .child(userId)
+            .child("pantry")
 
-        database.child("pantry").addValueEventListener(object : ValueEventListener {
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 items.clear()
                 for (ds in dataSnapshot.children) {
@@ -47,7 +53,7 @@ class MyPantryActivity : AppCompatActivity() {
 
         addButton.setOnClickListener {
             val item = addItem.text.toString()
-            database.child("pantry").push().setValue(item)
+            database.push().setValue(item)
             addItem.text.clear()
             Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
         }

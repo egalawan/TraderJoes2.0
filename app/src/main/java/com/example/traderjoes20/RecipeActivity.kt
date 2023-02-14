@@ -5,7 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-
+//page for single recipe
 class RecipeActivity : AppCompatActivity(){
     lateinit var recipeImageView: ImageView
     lateinit var recipeTitle: TextView
