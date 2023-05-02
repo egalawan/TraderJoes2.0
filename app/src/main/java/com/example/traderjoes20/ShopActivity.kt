@@ -1,6 +1,7 @@
 package com.example.traderjoes20
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +12,9 @@ import com.example.traderjoes20.databinding.ActivityShopBinding
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
-import java.net.URL
-import javax.net.ssl.HttpsURLConnection
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 
 @DelicateCoroutinesApi
 class ShopActivity : AppCompatActivity(){
@@ -28,7 +30,7 @@ class ShopActivity : AppCompatActivity(){
         val view = binding.root
         setContentView(view)
         setupRecyclerView()
-        parseJSON()
+        parseJSON(this)
     }
 
 
@@ -47,78 +49,64 @@ class ShopActivity : AppCompatActivity(){
     }
 
     @SuppressLint("LongLogTag", "NotifyDataSetChanged")
-    private fun parseJSON() {
+    private fun parseJSON(context: Context) {
         GlobalScope.launch(Dispatchers.IO) {
-            val url =
-                URL("https://raw.githubusercontent.com/egalawan/TraderJoes2.0/main/app/src/main/assets/nested.json")
+            val jsonString = try {
+                val inputStream = context.assets.open("nested.json")
+                val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+                val jsonString = bufferedReader.use { it.readText() }
+                inputStream.close()
+                jsonString
+            } catch (ioException: IOException) {
+                Log.e("JSON FILE", "Error opening JSON file", ioException)
+                return@launch
+            }
 
-            val httpsURLConnection = url.openConnection() as HttpsURLConnection
-            httpsURLConnection.setRequestProperty(
-                "Accept",
-                "application/json"
-            ) // The format of response we want to get from the server
-            httpsURLConnection.requestMethod = "GET"
-            httpsURLConnection.doInput = true
-            httpsURLConnection.doOutput = false
-            // Check if the connection is successful
-            val responseCode = httpsURLConnection.responseCode
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                val response = httpsURLConnection.inputStream.bufferedReader()
-                    .use { it.readText() }  // defaults to UTF-8
-                withContext(Dispatchers.Main) {
+            val jsonObject = JSONTokener(jsonString).nextValue() as JSONObject
 
-                    // Convert raw JSON to pretty JSON using GSON library
-                    //val gson = GsonBuilder().setPrettyPrinting().create()
-                    //val prettyJson = gson.toJson(JsonParser.parseString(response))
-                    //Log.d("Pretty Printed JSON :", prettyJson)
-                   // binding.jsonResultsTextview.text = prettyJson
+            val jsonArray = jsonObject.getJSONArray("data")
 
-                    val jsonObject = JSONTokener(response).nextValue() as JSONObject
+            for (i in 0 until jsonArray.length()) {
+                //getJSONObject(for each i).getString or .getJSONObject
+                // ID
+                val id = jsonArray.getJSONObject(i).getString("id")
 
-                    val jsonArray = jsonObject.getJSONArray("data")
+                // ingredient
+                val ingredient = jsonArray.getJSONObject(i).getJSONObject("ingredient")
 
-                    for (i in 0 until jsonArray.length()) {
-                        //getJSONObject(for each i).getString or .getJSONObject
-                        // ID
-                        val id = jsonArray.getJSONObject(i).getString("id")
+                // ingredient Name
+                val itemName = ingredient.getString("item")
 
-                        // ingredient
-                        val ingredient = jsonArray.getJSONObject(i).getJSONObject("ingredient")
+                // ingredient Name
+                val itemURL = jsonArray.getJSONObject(i).getString("url")
 
-                        // ingredient Name
-                        val itemName = ingredient.getString("item")
+                // ingredient price
+                val itemPrice = ingredient.getJSONObject("price")
 
-                        // ingredient Name
-                        val itemURL = jsonArray.getJSONObject(i).getString("url")
-
-                        // ingredient price
-                        val itemPrice = ingredient.getJSONObject("price")
-
-                        // item price in USD
-                        val itemUsd = itemPrice.getInt("usd")
+                // item price in USD
+                val itemUsd = itemPrice.getInt("usd")
 
 
-                        // ingredient Age
-                        val itemWeight = ingredient.getString("weight")
+                // ingredient Age
+                val itemWeight = ingredient.getString("weight")
 
-                        val model = Cell(
-                            id,
-                            itemURL,
-                            itemName,
-                            "$ $itemUsd",
-                            itemWeight
-                        )
-                        itemsArray.add(model)
+                val model = Cell(
+                    id,
+                    itemURL,
+                    itemName,
+                    "$ $itemUsd",
+                    itemWeight
+                )
+                itemsArray.add(model)
 
-                        adapter = RVAdapter(itemsArray)
-                        adapter.notifyDataSetChanged()
-                    }
+                adapter = RVAdapter(itemsArray)
+                adapter.notifyDataSetChanged()
+            }
 
-                    binding.jsonResultsRecyclerview.adapter = adapter
-                }
-            } else {
-                Log.e("HTTPURLCONNECTION_ERROR", responseCode.toString())
+            withContext(Dispatchers.Main) {
+                binding.jsonResultsRecyclerview.adapter = adapter
             }
         }
     }
+
 }

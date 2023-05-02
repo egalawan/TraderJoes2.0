@@ -47,7 +47,7 @@ dependencies {
     // Recyclerview (To show the data for ArrayJSON and NestedJSON)
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
-    //cardview
+    //card-view
     implementation 'androidx.cardview:cardview:1.0.0'
 
     // Coroutines

@@ -34,7 +34,7 @@
         android:id="@+id/textView2"
         android:layout_width="288dp"
         android:layout_height="54dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="28dp"
         android:background="@color/red"
         android:fontFamily="@font/trader_joes"
         android:gravity="center"
@@ -48,49 +48,11 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="RtlSymmetry" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="711dp" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_random"
-        android:layout_width="366dp"
-        android:layout_height="438dp"
-        android:layout_marginBottom="64dp"
-        android:background="@color/background"
-        app:layout_constraintBottom_toTopOf="@+id/btnRecipeHub"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <Button
-        android:id="@+id/btnRecipeHub"
-        android:layout_width="99dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/red"
-        android:fontFamily="@font/trader_joes"
-        android:shadowColor="@color/cream"
-        android:text="@string/recipe_hub1"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnMyPantry"
-        tools:ignore="TextContrastCheck" />
-
     <Button
         android:id="@+id/btnMyPantry"
         android:layout_width="93dp"
         android:layout_height="51dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/trader_joes"
         android:foregroundGravity="center"
@@ -100,7 +62,7 @@
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRecipeHub"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="TextContrastCheck" />
 
@@ -108,9 +70,9 @@
         android:id="@+id/btnShop"
         android:layout_width="99dp"
         android:layout_height="51dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/trader_joes"
         android:text="Shop"
@@ -118,11 +80,44 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toEndOf="@+id/btnRecipeHub"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_random"
-        app:layout_constraintVertical_bias="0.466"
         tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btnRecipeHub"
+        android:layout_width="99dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="34dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/trader_joes"
+        android:shadowColor="@color/cream"
+        android:text="@string/recipe_hub1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnShop"
+        app:layout_constraintStart_toEndOf="@+id/btnMyPantry"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_random"
+        android:layout_width="366dp"
+        android:layout_height="438dp"
+        android:layout_marginBottom="44dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toTopOf="@+id/btnRecipeHub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="711dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
