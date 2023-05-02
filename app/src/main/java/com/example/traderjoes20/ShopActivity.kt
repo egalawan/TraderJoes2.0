@@ -33,7 +33,6 @@ class ShopActivity : AppCompatActivity(){
         parseJSON(this)
     }
 
-
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.jsonResultsRecyclerview.layoutManager = layoutManager
@@ -85,7 +84,6 @@ class ShopActivity : AppCompatActivity(){
 
                 // item price in USD
                 val itemUsd = itemPrice.getInt("usd")
-
 
                 // ingredient Age
                 val itemWeight = ingredient.getString("weight")

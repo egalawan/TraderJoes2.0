@@ -13,11 +13,14 @@ import kotlinx.coroutines.DelicateCoroutinesApi
     On Click next Page after Recipe Hub
      */
 class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
+    private var items: List<Recipes>,
     private val recipe: ArrayList<Recipes>,
-    private val listener: RecipesActivity
+    private val listener: RecipesActivity,
     //can set to RecipeActivity but if want to reuse use the interface we created because you can pass any object that implements this
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private var filteredRecipeList: ArrayList<Recipes> = recipe
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = AllRecipesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,15 +32,16 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
         Shows what is on the Recipe Hub page
          */
         val recipeViewHolder = holder as RecipeAdapter.RecipeViewHolder
-        val url = recipe[position].img
+        //val url = recipe[position].img
 
-        Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
         val ingredientsString = StringBuilder()
         for (ingredient in recipe[position].ingredients) {
             ingredientsString.append("- $ingredient\n")
         }
         recipeViewHolder.recipeIngredientsTextview.text = ingredientsString.toString()
         recipeViewHolder.recipeTitleTextview.text = recipe[position].title
+        Picasso.get().load(recipe[position].img).into(recipeViewHolder.viewBinding.imageView)
+        //Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
         //recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
         //recipeViewHolder.viewBinding.RecipeServesTextview.text = recipe[position].serves
         //recipeViewHolder.viewBinding.RecipeCookingTimeTextview.text = recipe[position].cookingTime
@@ -71,6 +75,7 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
             }
         }
     }
+
     //when you have interface OnItemClickListener you need to the fun onItemClick
     interface OnItemClickListener{
         fun onItemClick(position: Int)
@@ -79,5 +84,23 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
         var recipe = newData
         notifyDataSetChanged()
     }
+
+    //search and filter?
+    fun search(query: String?) {
+        filteredRecipeList = if (query.isNullOrEmpty()) {
+            recipe
+        } else ({
+            recipe.filter { recipe ->
+                recipe.title?.contains(query, ignoreCase = true) == true
+            }
+        }) as ArrayList<Recipes>
+        notifyDataSetChanged()
+    }
+    fun setItems(newItems: List<Recipes>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+    //
 }
+
 

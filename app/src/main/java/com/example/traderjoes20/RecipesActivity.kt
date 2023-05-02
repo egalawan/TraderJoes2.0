@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityRecipesBinding
+import io.ktor.http.*
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -19,53 +21,45 @@ import java.io.InputStreamReader
 import java.util.*
 
 /*
-    main recipe hub page
+    main hub page
      */
 @DelicateCoroutinesApi
 class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
-
-    var recipeItems: ArrayList<Recipes> = ArrayList()
-    lateinit var adapter: RecipeAdapter
-
+    private var recipeItems: ArrayList<Recipes> = ArrayList()
+    private lateinit var adapter: RecipeAdapter
     private lateinit var binding: ActivityRecipesBinding
-
+    private lateinit var recipeSearch: SearchView
+    private var filteredItems: List<Recipes> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipesBinding.inflate(layoutInflater)
         val view = binding.root
+
         setContentView(view)
 
         setupRecyclerView()
         //the json parse
         parseJSON(this)
 
+        recipeSearch = findViewById(R.id.Recipe_SearchView)
+
+        //recipeSearch = binding.RecipeSearchView
+
+        recipeSearch = findViewById(R.id.Recipe_SearchView)
+        recipeSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterRecipes(newText)
+                return true
+            }
+        })
     }
+    //END OF ON-CREATE
 
-    override fun onItemClick(position: Int) {
-        /*
-        This is the code for when one of the recipes is clicked
-
-        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-        val clickItem = recipeItems[position]
-        clickItem.ingredients = "Clicked"
-         */
-        val intent = Intent(this@RecipesActivity, RecipeActivity::class.java)
-        intent.putExtra("directions", recipeItems[position].directions)
-        val ingredientsString = recipeItems[position].ingredients.joinToString("\n")
-        intent.putExtra("ingredients", ingredientsString)
-        //intent.putExtra("ingredients", recipeItems[position].ingredients as ArrayList<String>)
-        intent.putExtra("img", recipeItems[position].img)
-        intent.putExtra("serves", recipeItems[position].serves)
-        intent.putExtra("title", recipeItems[position].title)
-        intent.putExtra("cookingTime", recipeItems[position].cookingTime)
-        intent.putExtra("prepTime", recipeItems[position].prepTime)
-
-        startActivity(intent)
-
-        adapter.notifyItemChanged(position)
-
-    }
-
+    //FUNCTIONS:BELOW
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
@@ -80,7 +74,6 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
 
     }
-
     @SuppressLint("LongLogTag")
     private fun parseJSON(context: Context) {
         GlobalScope.launch(Dispatchers.IO) {
@@ -111,6 +104,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                 val cookingTime = jsonArray.getJSONObject(i).getString("cookingTime")
                 val prepTime = jsonArray.getJSONObject(i).getString("prepTime")
                 val id = jsonArray.getJSONObject(i).getString("id")
+
                 val model = Recipes(
                     img,
                     ingredients,
@@ -123,16 +117,53 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                     id,
                 )
                 recipeItems.add(model)
-                adapter = RecipeAdapter(recipeItems, this@RecipesActivity)
-                binding.recyclerView.post {
-                    adapter.notifyDataSetChanged()
-                }
+            }
+            adapter = RecipeAdapter(filteredItems, recipeItems, this@RecipesActivity)
+
+            binding.recyclerView.post {
+                adapter.notifyDataSetChanged()
             }
             withContext(Dispatchers.Main) {
                 binding.recyclerView.adapter = adapter
             }
         }
     }
+
+    //when the recipes are clicked, need to send the information to another page
+    override fun onItemClick(position: Int) {
+        /*
+        This is the code for when one of the recipes is clicked
+
+        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val clickItem = recipeItems[position]
+        clickItem.ingredients = "Clicked"
+         */
+        val intent = Intent(this@RecipesActivity, RecipeActivity::class.java)
+        intent.putExtra("directions", recipeItems[position].directions)
+        val ingredientsString = recipeItems[position].ingredients.joinToString("\n")
+        intent.putExtra("ingredients", ingredientsString)
+        //intent.putExtra("ingredients", recipeItems[position].ingredients as ArrayList<String>)
+        intent.putExtra("img", recipeItems[position].img)
+        intent.putExtra("serves", recipeItems[position].serves)
+        intent.putExtra("title", recipeItems[position].title)
+        intent.putExtra("cookingTime", recipeItems[position].cookingTime)
+        intent.putExtra("prepTime", recipeItems[position].prepTime)
+
+        startActivity(intent)
+
+        adapter.notifyItemChanged(position)
+    }
+    private fun filterRecipes(query: String?) {
+        if (query.isNullOrEmpty()) {
+            filteredItems = recipeItems
+        } else {
+            filteredItems = recipeItems.filter {
+                it.title!!.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
+            }
+        }
+        adapter.setItems(filteredItems)
+    }
 }
+
 
 

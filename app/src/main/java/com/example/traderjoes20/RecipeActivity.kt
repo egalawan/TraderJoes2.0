@@ -2,19 +2,19 @@ package com.example.traderjoes20
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 //page for single recipe
 class RecipeActivity : AppCompatActivity(){
-    lateinit var recipeImageView: ImageView
-    lateinit var recipeTitle: TextView
-    lateinit var recipeServes: TextView
-    lateinit var recipeCookingTime: TextView
-    lateinit var recipePrepTime: TextView
-    lateinit var recipeDirections: TextView
-    lateinit var recipeIngredients: TextView
-
+    private lateinit var recipeImageView: ImageView
+    private lateinit var recipeTitle: TextView
+    private lateinit var recipeServes: TextView
+    private lateinit var recipeCookingTime: TextView
+    private lateinit var recipePrepTime: TextView
+    private lateinit var recipeDirections: TextView
+    private lateinit var recipeIngredients: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
@@ -64,7 +64,6 @@ class RecipeActivity : AppCompatActivity(){
         recipeDirections.text = formattedDirections.toString()
 
         //
-
         Picasso.get().load(img)
             .placeholder(R.drawable.first_food)
             .into(recipeImageView)
