@@ -1,6 +1,7 @@
 package com.example.traderjoes20
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +13,10 @@ import com.example.traderjoes20.databinding.ActivityRecipesBinding
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
-import java.net.URL
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStreamReader
 import java.util.*
-import javax.net.ssl.HttpsURLConnection
 
 /*
     main recipe hub page
@@ -34,7 +36,8 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         setContentView(view)
 
         setupRecyclerView()
-        parseJSON()
+        //the json parse
+        parseJSON(this)
 
     }
 
@@ -79,90 +82,57 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
     }
 
     @SuppressLint("LongLogTag")
-    private fun parseJSON() {
+    private fun parseJSON(context: Context) {
         GlobalScope.launch(Dispatchers.IO) {
-            val url =
-                URL("https://raw.githubusercontent.com/egalawan/TraderJoes2.0/main/app/src/main/assets/recipes.json")
+            val jsonString = try {
+                val inputStream = context.assets.open("recipes.json")
+                val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+                val jsonString = bufferedReader.use { it.readText() }
+                inputStream.close()
+                jsonString
+            } catch (ioException: IOException) {
+                Log.e("JSON FILE", "Error opening JSON file", ioException)
+                return@launch
+            }
 
-            val httpsURLConnection = url.openConnection() as HttpsURLConnection
-            httpsURLConnection.setRequestProperty(
-                "Accept",
-                "application/json"
-            ) // The format of response we want to get from the server
-            httpsURLConnection.requestMethod = "GET"
-            httpsURLConnection.doInput = true
-            httpsURLConnection.doOutput = false
-            // Check if the connection is successful
-            val responseCode = httpsURLConnection.responseCode
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                val response = httpsURLConnection.inputStream.bufferedReader()
-                    .use { it.readText() }  // defaults to UTF-8
-                withContext(Dispatchers.Main) {
-
-                    val jsonObject = JSONTokener(response).nextValue() as JSONObject
-
-                    val jsonArray = jsonObject.getJSONArray("recipes")
-
-                    //jsonArray.length()
-                    for (i in 0 until jsonArray.length()) {
-                        //getJSONObject(for each i).getString or .getJSONObject
-                        //img
-                        val img = jsonArray.getJSONObject(i).getString("img")
-
-                        val ingredientsArray = jsonArray.getJSONObject(i).getJSONArray("ingredients")
-                        val ingredients = mutableListOf<String>()
-                        for (j in 0 until ingredientsArray.length()) {
-                            ingredients.add(ingredientsArray.getString(j))
-                        }
-
-                        // serves
-                        val serves = jsonArray.getJSONObject(i).getString("serves")
-
-                        // tagIds
-                        val tagIds = jsonArray.getJSONObject(i).getJSONArray("tagIds")
-
-                        //title
-                        val title = jsonArray.getJSONObject(i).getString("title")
-                        //Log.i("title: ", title)
-                        //directions
-                        val directions = jsonArray.getJSONObject(i).getString("directions")
-
-                        //cookingTime
-                        val cookingTime = jsonArray.getJSONObject(i).getString("cookingTime")
-
-                        //prepTime
-                        val prepTime = jsonArray.getJSONObject(i).getString("prepTime")
-
-                        //id
-                        val id = jsonArray.getJSONObject(i).getString("id")
-                        //Log.i("id: ", id)
-
-                        val model = Recipes(
-                            img,
-                            //tagId,
-                            ingredients,
-                            serves,
-                            tagIds,
-                            title,
-                            directions,
-                            cookingTime,
-                            prepTime,
-                            id,
-                        )
-                        recipeItems.add(model)
-
-                        adapter = RecipeAdapter(recipeItems,this@RecipesActivity)
-                        binding.recyclerView.post {
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
-                    binding.recyclerView.adapter = adapter
-
+            val jsonObject = JSONTokener(jsonString).nextValue() as JSONObject
+            val jsonArray = jsonObject.getJSONArray("recipes")
+            for (i in 0 until jsonArray.length()) {
+                val img = jsonArray.getJSONObject(i).getString("img")
+                val ingredientsArray = jsonArray.getJSONObject(i).getJSONArray("ingredients")
+                val ingredients = mutableListOf<String>()
+                for (j in 0 until ingredientsArray.length()) {
+                    ingredients.add(ingredientsArray.getString(j))
                 }
-            } else {
-                Log.e("HTTPURLCONNECTION_ERROR", responseCode.toString())
+                val serves = jsonArray.getJSONObject(i).getString("serves")
+                val tagIds = jsonArray.getJSONObject(i).getJSONArray("tagIds")
+                val title = jsonArray.getJSONObject(i).getString("title")
+                val directions = jsonArray.getJSONObject(i).getString("directions")
+                val cookingTime = jsonArray.getJSONObject(i).getString("cookingTime")
+                val prepTime = jsonArray.getJSONObject(i).getString("prepTime")
+                val id = jsonArray.getJSONObject(i).getString("id")
+                val model = Recipes(
+                    img,
+                    ingredients,
+                    serves,
+                    tagIds,
+                    title,
+                    directions,
+                    cookingTime,
+                    prepTime,
+                    id,
+                )
+                recipeItems.add(model)
+                adapter = RecipeAdapter(recipeItems, this@RecipesActivity)
+                binding.recyclerView.post {
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            withContext(Dispatchers.Main) {
+                binding.recyclerView.adapter = adapter
             }
         }
     }
 }
+
 
