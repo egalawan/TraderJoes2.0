@@ -1,5 +1,6 @@
 package com.example.traderjoes20
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.*
@@ -16,6 +17,8 @@ class GroceryListActivity : AppCompatActivity() {
     private lateinit var itemEdt: EditText
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
+    private lateinit var share: Button
+    private lateinit var back: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,9 +28,13 @@ class GroceryListActivity : AppCompatActivity() {
         itemView = findViewById(R.id.userlist)
         addBtn = findViewById(R.id.button)
         itemEdt = findViewById(R.id.AddItem)
-        val itemList = mutableListOf<String>()
+        share = findViewById(R.id.send)
+        back = findViewById(R.id.backToPantry)
         database = FirebaseDatabase.getInstance().reference
         userId = FirebaseAuth.getInstance().currentUser!!.uid
+
+
+        val itemList = mutableListOf<String>()
 
         // on below line we are adding items to our list
 //        itemList.add("Corn on the Cob")
@@ -70,7 +77,6 @@ class GroceryListActivity : AppCompatActivity() {
 
         // on below line we are adding click listener for our button.
         addBtn.setOnClickListener {
-
             // on below line we are getting text from edit text
             val item = itemEdt.text.toString()
             database.push().setValue(item)
@@ -87,7 +93,45 @@ class GroceryListActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
             }
         }
-//        end of "add" button
+        //need to add a button to go back to the pantry list
+        back.setOnClickListener{
+            val intent = Intent(this, MyPantryActivity::class.java)
+            startActivity(intent)
+        }
 
+        //
+//        end of "add" button
+        share.setOnClickListener {
+            // Implement sharing functionality here
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+
+            val items = itemList.joinToString(separator = "\n")
+
+            intent.putExtra(Intent.EXTRA_TEXT, items)
+
+            startActivity(Intent.createChooser(intent, "Share grocery list with"))
+
+        }
+        //need to add a button to go back to the pantry list
+        back.setOnClickListener{
+            val intent = Intent(this, MyPantryActivity::class.java)
+            startActivity(intent)
+        }
+
+        //
+//        end of "add" button
+        share.setOnClickListener {
+            // Implement sharing functionality here
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+
+            val items = itemList.joinToString(separator = "\n")
+
+            intent.putExtra(Intent.EXTRA_TEXT, items)
+
+            startActivity(Intent.createChooser(intent, "Share grocery list with"))
+
+        }
     }
 }

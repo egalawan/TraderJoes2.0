@@ -12,9 +12,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class MyPantryActivity : AppCompatActivity() {
-
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
+
+    private lateinit var pantryList:ListView
+    private lateinit var addItem:EditText
+    private lateinit var addButton:Button
+    private lateinit var back:Button
+    var itemList: ArrayList<Cell> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_pantry)
@@ -22,9 +28,10 @@ class MyPantryActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().reference
 
         //each "item" in the MyPantry View
-        val pantryList = findViewById<ListView>(R.id.pantryList)
-        val addItem = findViewById<EditText>(R.id.AddItem)
-        val addButton = findViewById<Button>(R.id.button)
+        pantryList = findViewById(R.id.pantryList)
+        addItem = findViewById(R.id.AddItem)
+        addButton = findViewById(R.id.button)
+        back = findViewById(R.id.backToPantry)
 
         val items = mutableListOf<String>()
         val adapter = PantryListAdapter(this, items)
@@ -51,6 +58,7 @@ class MyPantryActivity : AppCompatActivity() {
             }
         })
 
+        //adding whatever is in the text box
         addButton.setOnClickListener {
             val item = addItem.text.toString()
             database.push().setValue(item)
@@ -58,6 +66,13 @@ class MyPantryActivity : AppCompatActivity() {
             Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
         }
 
+        //go back home button
+        back.setOnClickListener{
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
+        //go to the grocery list
         val btnGroceryList = findViewById<Button>(R.id.btnGroceryList)
         btnGroceryList.setOnClickListener {
             startActivity(Intent(this, GroceryListActivity::class.java))

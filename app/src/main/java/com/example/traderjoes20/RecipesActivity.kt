@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -29,6 +31,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
     private lateinit var adapter: RecipeAdapter
     private lateinit var binding: ActivityRecipesBinding
     private lateinit var recipeSearch: SearchView
+    private lateinit var back:ImageButton
     private var filteredItems: List<Recipes> = emptyList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +45,7 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         parseJSON(this)
 
         recipeSearch = findViewById(R.id.Recipe_SearchView)
-
+        back = findViewById(R.id.backToMain)
         //recipeSearch = binding.RecipeSearchView
 
         recipeSearch = findViewById(R.id.Recipe_SearchView)
@@ -56,6 +59,12 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
                 return true
             }
         })
+
+        //go back home button
+        back.setOnClickListener{
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
     //END OF ON-CREATE
 
@@ -72,8 +81,8 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         ContextCompat.getDrawable(this, R.drawable.line_divider)
             ?.let { drawable -> dividerItemDecoration.setDrawable(drawable) }
         binding.recyclerView.addItemDecoration(dividerItemDecoration)
-
     }
+
     @SuppressLint("LongLogTag")
     private fun parseJSON(context: Context) {
         GlobalScope.launch(Dispatchers.IO) {

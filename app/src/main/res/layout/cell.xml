@@ -20,23 +20,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/trader_joes"
-                android:text="Item Name: "
+                android:text="@string/item_name"
                 android:paddingStart="10dp"
                 android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textColor="@android:color/white"/>
 
             <TextView
                 android:id="@+id/item_name_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:fontFamily="@font/trader_joes"
                 android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
+                android:paddingLeft="10dp"
                 android:text="@string/lorem_ipsum"
                 android:textColor="@android:color/white"
                 android:textSize="22sp" />

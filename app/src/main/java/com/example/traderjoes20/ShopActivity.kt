@@ -4,11 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityShopBinding
+import com.example.traderjoes20.databinding.ActivityMyPantryBinding.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.coroutines.*
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -21,17 +26,50 @@ class ShopActivity : AppCompatActivity(){
 
     var itemsArray: ArrayList<Cell> = ArrayList()
     private lateinit var adapter: RVAdapter
-
     private lateinit var binding: ActivityShopBinding
-
+    private lateinit var database: DatabaseReference
+    private lateinit var userId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShopBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        userId = FirebaseAuth.getInstance().currentUser!!.uid
+        database = FirebaseDatabase.getInstance().reference
         setupRecyclerView()
         parseJSON(this)
+
+        //     database = FirebaseDatabase.getInstance().reference
+//            .child("users")
+//            .child(userId)
+//            .child("pantry")
+
+//
+//        val addtoPantrybtn = findViewById<Button>(R.id.btnAddtoPantry)
+//        addtoPantrybtn.setOnClickListener {
+//            val item = addItem.text.toString()
+//            database.push().setValue(item)
+//            addItem.text.clear()
+//            Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
+//        }
+        //sends to firebase console
+
+//
+//        database.addValueEventListener(object : ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                for (ds in dataSnapshot.children) {
+//                    val item = ds.getValue(String::class.java)
+//                    items.add(item!!)
+//                }
+//                adapter.notifyDataSetChanged()
+//            }
+//
+//            override fun onCancelled(databaseError: DatabaseError) {
+//                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
+//            }
+//        })
     }
+
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
@@ -100,6 +138,7 @@ class ShopActivity : AppCompatActivity(){
                 adapter = RVAdapter(itemsArray)
                 adapter.notifyDataSetChanged()
             }
+
 
             withContext(Dispatchers.Main) {
                 binding.jsonResultsRecyclerview.adapter = adapter
