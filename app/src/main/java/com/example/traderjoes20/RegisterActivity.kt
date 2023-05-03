@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.DelicateCoroutinesApi
-
+import com.google.firebase.database.ktx.database
 
 @DelicateCoroutinesApi
 class RegisterActivity : AppCompatActivity() {
@@ -48,8 +48,7 @@ class RegisterActivity : AppCompatActivity() {
         val password = findViewById<EditText>(R.id.reg_password)
 
         if (name.text.isEmpty() || email.text.isEmpty() || password.text.isEmpty()) {
-            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
         }
         val inputName = name.text.toString()
@@ -59,29 +58,42 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(inputEmail, inputPassword)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, let move to the next activity i.e. MainActivity
+                    val userId = auth.currentUser?.uid
+                    if (userId != null) {
+                        val user = hashMapOf(
+                            "fullName" to inputName,
+                            "email" to inputEmail
+                        )
 
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
+                        // Use the database reference instead of Firestore
+                        val database = Firebase.database
+                        database.reference.child("users").child(userId).setValue(user)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "User info saved", Toast.LENGTH_SHORT).show()
 
-                    Toast.makeText(
-                        baseContext, "Success",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                                // Move to the HomeActivity after successfully saving the user's information
+                                val intent = Intent(this, HomeActivity::class.java)
+                                startActivity(intent)
 
+                            }
+                            .addOnFailureListener { e ->
+                                Toast.makeText(this, "Error saving user info: ${e.localizedMessage}", Toast.LENGTH_SHORT).show()
+                            }
+                    }
                 } else {
-                    // If sign in fails, display a message to the user.
-
+                    val exception = task.exception
                     Toast.makeText(
-                        baseContext, "Authentication failed.",
+                        baseContext, "Authentication failed: ${exception?.localizedMessage}",
                         Toast.LENGTH_SHORT
                     ).show()
-
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Error occurred ${it.localizedMessage}", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, "Error occurred ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
     }
+
+
+
+
 }
