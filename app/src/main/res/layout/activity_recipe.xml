@@ -159,12 +159,31 @@
 
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/backToRecipes"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Back" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/backToRecipes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:text="Back" />
+
+            <Button
+                android:id="@+id/btnGroceryList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:text="Add to Grocery List"
+                app:layout_constraintBottom_toBottomOf="@+id/backToRecipes"
+                app:layout_constraintStart_toEndOf="@+id/backToRecipes" />
+
+
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

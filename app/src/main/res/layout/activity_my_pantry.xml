@@ -27,7 +27,6 @@
         android:layout_height="508dp"
         android:layout_gravity="center"
         android:background="@drawable/my_border2">
-
     </ListView>
 
     <LinearLayout

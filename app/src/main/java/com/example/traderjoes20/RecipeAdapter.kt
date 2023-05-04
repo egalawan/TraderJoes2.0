@@ -44,6 +44,10 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
         notifyDataSetChanged()
     }
 
+    fun getFilteredRecipeList(): ArrayList<Recipes> {
+        return filteredRecipeList
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = AllRecipesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecipeViewHolder(binding)

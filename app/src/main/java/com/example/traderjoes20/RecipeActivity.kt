@@ -2,8 +2,11 @@ package com.example.traderjoes20
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 //page for single recipe
 class RecipeActivity : AppCompatActivity(){
@@ -15,6 +18,10 @@ class RecipeActivity : AppCompatActivity(){
     private lateinit var recipeDirections: TextView
     private lateinit var recipeIngredients: TextView
     private lateinit var backButton: Button
+    private lateinit var sendToGrocery:Button
+    private lateinit var database: DatabaseReference
+    private lateinit var userId: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
@@ -27,6 +34,11 @@ class RecipeActivity : AppCompatActivity(){
         recipeIngredients = findViewById(R.id.Recipe_ingredients_Textview)
         recipeImageView = findViewById(R.id.Recipe_ImageView)
         backButton = findViewById(R.id.backToRecipes)
+        sendToGrocery = findViewById(R.id.btnGroceryList)
+
+        userId = FirebaseAuth.getInstance().currentUser!!.uid
+        database = FirebaseDatabase.getInstance().reference
+
 
         val bundle : Bundle? = intent.extras
         val title = bundle?.getString("title")
@@ -66,13 +78,25 @@ class RecipeActivity : AppCompatActivity(){
 
         //
         Picasso.get().load(img)
-            .placeholder(R.drawable.first_food)
             .into(recipeImageView)
 
-        //need to add function for back
+        //need to add function for back Home Everytime
         backButton.setOnClickListener{
-            val intent = Intent(this, RecipesActivity::class.java)
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+
+        sendToGrocery.setOnClickListener {
+            //sends to firebase console
+            database = FirebaseDatabase.getInstance().reference
+                .child("users")
+                .child(userId)
+                .child("grocery-list")
+
+            database.push().setValue(formattedIngredients.toString())
+            Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
+
+        }
+
     }
 }

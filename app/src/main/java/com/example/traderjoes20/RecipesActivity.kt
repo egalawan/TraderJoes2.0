@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityRecipesBinding
+import com.example.traderjoes20.RecipeAdapter.*
 import io.ktor.http.*
 import kotlinx.coroutines.*
 import org.json.JSONObject
@@ -139,41 +140,41 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
             }
         }
     }
+    private fun filterRecipes(query: String?) {
+        filteredItems = if (query.isNullOrEmpty()) {
+            recipeItems
+        } else {
+            recipeItems.filter {
+                it.title!!.lowercase(Locale.getDefault()).contains(query.lowercase(Locale.getDefault()))
+            }
+        }
+        adapter.setItems(filteredItems)
+    }
 
-    //when the recipes are clicked, need to send the information to another page
+    /*
+            This is the code for when one of the recipes is clicked
+             */
     override fun onItemClick(position: Int) {
-        /*
-        This is the code for when one of the recipes is clicked
 
-        Toast.makeText(this, "Item $position clicked", Toast.LENGTH_SHORT).show()
-        val clickItem = recipeItems[position]
-        clickItem.ingredients = "Clicked"
-         */
+        //adapter instead of RecipeAdapter because we defined early
+        val filteredList = adapter.getFilteredRecipeList()
+
         val intent = Intent(this@RecipesActivity, RecipeActivity::class.java)
-        intent.putExtra("directions", recipeItems[position].directions)
-        val ingredientsString = recipeItems[position].ingredients.joinToString("\n")
+        intent.putExtra("directions", filteredList[position].directions)
+        val ingredientsString = filteredList[position].ingredients.joinToString("\n")
         intent.putExtra("ingredients", ingredientsString)
         //intent.putExtra("ingredients", recipeItems[position].ingredients as ArrayList<String>)
-        intent.putExtra("img", recipeItems[position].img)
-        intent.putExtra("serves", recipeItems[position].serves)
-        intent.putExtra("title", recipeItems[position].title)
-        intent.putExtra("cookingTime", recipeItems[position].cookingTime)
-        intent.putExtra("prepTime", recipeItems[position].prepTime)
+        intent.putExtra("img", filteredList[position].img)
+        intent.putExtra("serves", filteredList[position].serves)
+        intent.putExtra("title", filteredList[position].title)
+        intent.putExtra("cookingTime", filteredList[position].cookingTime)
+        intent.putExtra("prepTime", filteredList[position].prepTime)
 
         startActivity(intent)
 
         adapter.notifyItemChanged(position)
     }
-    private fun filterRecipes(query: String?) {
-        if (query.isNullOrEmpty()) {
-            filteredItems = recipeItems
-        } else {
-            filteredItems = recipeItems.filter {
-                it.title!!.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
-            }
-        }
-        adapter.setItems(filteredItems)
-    }
+
 }
 
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.traderjoes20.databinding.ActivityShopBinding
 import com.example.traderjoes20.databinding.ActivityMyPantryBinding.*
+import com.example.traderjoes20.databinding.CellBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.coroutines.*
@@ -41,35 +42,6 @@ class ShopActivity : AppCompatActivity(){
         setupRecyclerView()
         parseJSON(this)
 
-        //     database = FirebaseDatabase.getInstance().reference
-//            .child("users")
-//            .child(userId)
-//            .child("pantry")
-
-//
-//        val addtoPantrybtn = findViewById<Button>(R.id.btnAddtoPantry)
-//        addtoPantrybtn.setOnClickListener {
-//            val item = addItem.text.toString()
-//            database.push().setValue(item)
-//            addItem.text.clear()
-//            Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
-//        }
-        //sends to firebase console
-
-//
-//        database.addValueEventListener(object : ValueEventListener {
-//            override fun onDataChange(dataSnapshot: DataSnapshot) {
-//                for (ds in dataSnapshot.children) {
-//                    val item = ds.getValue(String::class.java)
-//                    items.add(item!!)
-//                }
-//                adapter.notifyDataSetChanged()
-//            }
-//
-//            override fun onCancelled(databaseError: DatabaseError) {
-//                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
-//            }
-//        })
         //TOP is supposed to be the button for send to pantry list
         backHome = findViewById(R.id.backToHomeFromShop)
         //go back home button
@@ -148,12 +120,10 @@ class ShopActivity : AppCompatActivity(){
                 adapter = RVAdapter(itemsArray)
                 adapter.notifyDataSetChanged()
             }
-
-
             withContext(Dispatchers.Main) {
                 binding.jsonResultsRecyclerview.adapter = adapter
             }
         }
     }
-
+    //end of parseJSON
 }

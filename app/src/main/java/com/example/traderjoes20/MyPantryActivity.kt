@@ -57,7 +57,6 @@ class MyPantryActivity : AppCompatActivity() {
                 Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
             }
         })
-
         //adding whatever is in the text box
         addButton.setOnClickListener {
             val item = addItem.text.toString()
@@ -78,4 +77,5 @@ class MyPantryActivity : AppCompatActivity() {
             startActivity(Intent(this, GroceryListActivity::class.java))
         }
     }
+    //end of ON-CREATE
 }
