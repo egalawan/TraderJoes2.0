@@ -1,9 +1,8 @@
 package com.example.traderjoes20
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.SearchView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 //page for single recipe
@@ -15,6 +14,7 @@ class RecipeActivity : AppCompatActivity(){
     private lateinit var recipePrepTime: TextView
     private lateinit var recipeDirections: TextView
     private lateinit var recipeIngredients: TextView
+    private lateinit var backButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
@@ -26,6 +26,7 @@ class RecipeActivity : AppCompatActivity(){
         recipeDirections = findViewById(R.id.Recipe_directions_Textview)
         recipeIngredients = findViewById(R.id.Recipe_ingredients_Textview)
         recipeImageView = findViewById(R.id.Recipe_ImageView)
+        backButton = findViewById(R.id.backToRecipes)
 
         val bundle : Bundle? = intent.extras
         val title = bundle?.getString("title")
@@ -67,5 +68,11 @@ class RecipeActivity : AppCompatActivity(){
         Picasso.get().load(img)
             .placeholder(R.drawable.first_food)
             .into(recipeImageView)
+
+        //need to add function for back
+        backButton.setOnClickListener{
+            val intent = Intent(this, RecipesActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

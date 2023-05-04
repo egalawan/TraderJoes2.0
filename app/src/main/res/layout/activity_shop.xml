@@ -36,4 +36,12 @@
         android:layout_weight="1"
         android:background="@drawable/my_border" />
 
+    <Button
+        android:id="@+id/backToHomeFromShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Back"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        />
 </LinearLayout>

@@ -18,7 +18,7 @@ class MyPantryActivity : AppCompatActivity() {
     private lateinit var pantryList:ListView
     private lateinit var addItem:EditText
     private lateinit var addButton:Button
-    private lateinit var back:Button
+    private lateinit var backHome:Button
     var itemList: ArrayList<Cell> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class MyPantryActivity : AppCompatActivity() {
         pantryList = findViewById(R.id.pantryList)
         addItem = findViewById(R.id.AddItem)
         addButton = findViewById(R.id.button)
-        back = findViewById(R.id.backToPantry)
+        backHome = findViewById(R.id.backToHomeFromPantry)
 
         val items = mutableListOf<String>()
         val adapter = PantryListAdapter(this, items)
@@ -67,7 +67,7 @@ class MyPantryActivity : AppCompatActivity() {
         }
 
         //go back home button
-        back.setOnClickListener{
+        backHome.setOnClickListener{
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }

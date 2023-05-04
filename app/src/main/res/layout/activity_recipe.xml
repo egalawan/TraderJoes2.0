@@ -20,16 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="61dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/trader_joes"
             android:gravity="center"
-            android:padding="15dp"
             android:text="Name"
             android:textColor="@color/red"
             android:textSize="30sp" />
 
         <ScrollView
             android:layout_width="357dp"
-            android:layout_height="610dp"
+            android:layout_height="578dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@color/cream"
@@ -159,5 +159,12 @@
 
             </LinearLayout>
         </ScrollView>
+
+        <Button
+            android:id="@+id/backToRecipes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Back" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

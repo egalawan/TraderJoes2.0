@@ -2,6 +2,7 @@ package com.example.traderjoes20
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -29,6 +30,7 @@ class ShopActivity : AppCompatActivity(){
     private lateinit var binding: ActivityShopBinding
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
+    private lateinit var backHome:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShopBinding.inflate(layoutInflater)
@@ -68,6 +70,14 @@ class ShopActivity : AppCompatActivity(){
 //                Log.w("TAG", "loadPost:onCancelled", databaseError.toException())
 //            }
 //        })
+        //TOP is supposed to be the button for send to pantry list
+        backHome = findViewById(R.id.backToHomeFromShop)
+        //go back home button
+        backHome.setOnClickListener{
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 

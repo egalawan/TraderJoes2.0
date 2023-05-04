@@ -1,5 +1,6 @@
 package com.example.traderjoes20
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traderjoes20.databinding.AllRecipesBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.DelicateCoroutinesApi
+import java.util.*
+import kotlin.collections.ArrayList
+
 /*
     On Click next Page after Recipe Hub
      */
@@ -21,6 +25,24 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var filteredRecipeList: ArrayList<Recipes> = recipe
+    fun search(query: String?) {
+        if (query != null) {
+            Log.d("search: ",query )
+        }
+        filteredRecipeList = if (query.isNullOrEmpty()) {
+            recipe
+        } else {
+            val filteredList = ArrayList<Recipes>()
+            for (recipe in recipe) {
+                if (recipe.title?.lowercase(Locale.ROOT)?.contains(query.lowercase(Locale.ROOT)) == true)
+                {
+                    filteredList.add(recipe)
+                }
+            }
+            filteredList
+        }
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = AllRecipesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -32,15 +54,20 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
         Shows what is on the Recipe Hub page
          */
         val recipeViewHolder = holder as RecipeAdapter.RecipeViewHolder
+        val title = filteredRecipeList[position].title
         //val url = recipe[position].img
+
+        Log.d("RecipeAdapter", "Recipe title at position $position: $title")
 
         val ingredientsString = StringBuilder()
         for (ingredient in recipe[position].ingredients) {
             ingredientsString.append("- $ingredient\n")
         }
+
         recipeViewHolder.recipeIngredientsTextview.text = ingredientsString.toString()
-        recipeViewHolder.recipeTitleTextview.text = recipe[position].title
-        Picasso.get().load(recipe[position].img).into(recipeViewHolder.viewBinding.imageView)
+        recipeViewHolder.recipeTitleTextview.text = filteredRecipeList[position].title
+        Picasso.get().load(filteredRecipeList[position].img).into(recipeViewHolder.viewBinding.imageView)
+
         //Picasso.get().load(url).into(recipeViewHolder.viewBinding.imageView)
         //recipeViewHolder.recipeDirectionsTextview.text = recipe[position].directions
         //recipeViewHolder.viewBinding.RecipeServesTextview.text = recipe[position].serves
@@ -49,8 +76,13 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
     }
 
     override fun getItemCount(): Int {
-        return recipe.size
+        return filteredRecipeList.size
     }
+
+    fun getItem(position: Int): Recipes {
+        return filteredRecipeList[position]
+    }
+
 
     //when OnClickListener is implemented need to add the override fun onClick
     inner class RecipeViewHolder(var viewBinding: AllRecipesBinding) : RecyclerView.ViewHolder(viewBinding.root),
@@ -85,17 +117,6 @@ class RecipeAdapter @OptIn(DelicateCoroutinesApi::class) constructor(
         notifyDataSetChanged()
     }
 
-    //search and filter?
-    fun search(query: String?) {
-        filteredRecipeList = if (query.isNullOrEmpty()) {
-            recipe
-        } else ({
-            recipe.filter { recipe ->
-                recipe.title?.contains(query, ignoreCase = true) == true
-            }
-        }) as ArrayList<Recipes>
-        notifyDataSetChanged()
-    }
     fun setItems(newItems: List<Recipes>) {
         items = newItems
         notifyDataSetChanged()

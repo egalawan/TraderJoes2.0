@@ -7,7 +7,6 @@
     android:background="@drawable/my_border2"
     android:orientation="vertical"
     android:weightSum="2">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -19,13 +18,24 @@
         android:textSize="30sp"
         android:textStyle="bold"/>
 
-
-    <SearchView
-        android:id="@+id/Recipe_SearchView"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Enter some text..." />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/cream"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search recipes..."
+            app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <!--recycler view for displaying data-->
