@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.DelicateCoroutinesApi
+
 //page for single recipe
 class RecipeActivity : AppCompatActivity(){
     private lateinit var recipeImageView: ImageView
@@ -22,6 +24,7 @@ class RecipeActivity : AppCompatActivity(){
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipe)
@@ -60,7 +63,7 @@ class RecipeActivity : AppCompatActivity(){
         val formattedIngredients = StringBuilder()
         if (ingredientsList != null) {
             for (ingredient in ingredientsList) {
-                formattedIngredients.append("- $ingredient\n")
+                formattedIngredients.append("$ingredient\n")
             }
             recipeIngredients.text = formattedIngredients.toString()
         }
@@ -87,15 +90,29 @@ class RecipeActivity : AppCompatActivity(){
         }
 
         sendToGrocery.setOnClickListener {
-            //sends to firebase console
-            database = FirebaseDatabase.getInstance().reference
-                .child("users")
-                .child(userId)
-                .child("grocery-list")
+            val userRef = database.child("users").child(userId)
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val databaseReference: DatabaseReference = if (dataSnapshot.child("groupCode").exists()) {
+                        // User is in a group, retrieve the group code
+                        val groupCode = dataSnapshot.child("groupCode").value.toString()
+                        // Update the database reference to the group's grocery list
+                        database.child("groups").child(groupCode).child("grocery-list")
+                    } else {
+                        // User is not in a group, use the user's own grocery list
+                        database.child("users").child(userId).child("grocery-list")
+                    }
 
-            database.push().setValue(formattedIngredients.toString())
-            Toast.makeText(this, "Item added!", Toast.LENGTH_SHORT).show()
+                    for (ingredient in ingredientsList!!) {
+                        databaseReference.push().setValue(ingredient)
+                    }
+                    Toast.makeText(this@RecipeActivity, "Item added!", Toast.LENGTH_SHORT).show()
+                }
 
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("Send to Grocery", "Failed to add item", databaseError.toException())
+                }
+            })
         }
 
     }

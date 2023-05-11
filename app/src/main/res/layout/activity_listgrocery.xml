@@ -32,6 +32,7 @@
             android:layout_width="262dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:paddingBottom="15dp"
             android:hint="@string/enter_item_name">
 
         </EditText>
@@ -48,36 +49,47 @@
 
     <ListView
         android:id="@+id/userlist"
-        android:layout_width="378dp"
-        android:layout_height="502dp"
+        android:layout_width="377dp"
+        android:layout_height="478dp"
+        android:paddingTop="7dp"
+
+        android:paddingBottom="7dp"
         android:layout_gravity="center"
         android:background="@drawable/my_border2">
 
     </ListView>
 
+    <Button
+        android:id="@+id/backToPantry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="back"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:textSize="20sp" />
+
     <LinearLayout
-        android:layout_width="382dp"
+        android:layout_width="378dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/backToPantry"
-            android:layout_width="153dp"
+            android:id="@+id/makeGroup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="back"
-            android:layout_marginLeft= "3dp"
-            android:textSize="20sp" />
+            android:text="Make a Group"
+            android:layout_marginLeft="5dp"
+            android:textSize="15sp" />
 
         <Button
-            android:id="@+id/send"
-            android:layout_width="153dp"
+            android:id="@+id/joinGroup"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/share"
+            android:layout_gravity="center"
+            android:text="Join A Group"
             android:layout_marginLeft="60dp"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
 
     </LinearLayout>
-
 </LinearLayout>

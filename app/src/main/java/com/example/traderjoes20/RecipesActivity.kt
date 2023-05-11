@@ -40,12 +40,12 @@ class RecipesActivity : AppCompatActivity(), RecipeAdapter.OnItemClickListener {
         binding = ActivityRecipesBinding.inflate(layoutInflater)
         val view = binding.root
 
+        adapter = RecipeAdapter(filteredItems, recipeItems, this@RecipesActivity)
         setContentView(view)
 
         setupRecyclerView()
         //the json parse
         parseJSON(this)
-
 //      recipeSearch = findViewById(R.id.Recipe_SearchView)
         back = findViewById(R.id.backToMain)
         //recipeSearch = binding.RecipeSearchView

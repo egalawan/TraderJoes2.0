@@ -14,7 +14,6 @@ import com.google.firebase.database.ktx.database
 
 @DelicateCoroutinesApi
 class RegisterActivity : AppCompatActivity() {
-
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,10 +63,9 @@ class RegisterActivity : AppCompatActivity() {
                             "fullName" to inputName,
                             "email" to inputEmail
                         )
-
                         // Use the database reference instead of Firestore
                         val database = Firebase.database
-                        database.reference.child("users").child(userId).setValue(user)
+                        database.reference.child("users").child(userId).child("UserInfo").setValue(user)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "User info saved", Toast.LENGTH_SHORT).show()
 
@@ -92,8 +90,4 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error occurred ${it.localizedMessage}", Toast.LENGTH_SHORT).show()
             }
     }
-
-
-
-
 }

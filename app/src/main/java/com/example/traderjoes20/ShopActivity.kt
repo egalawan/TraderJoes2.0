@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -32,6 +33,7 @@ class ShopActivity : AppCompatActivity(){
     private lateinit var database: DatabaseReference
     private lateinit var userId: String
     private lateinit var backHome:Button
+    private lateinit var searchShop:SearchView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShopBinding.inflate(layoutInflater)
@@ -42,6 +44,12 @@ class ShopActivity : AppCompatActivity(){
         setupRecyclerView()
         parseJSON(this)
 
+
+        searchShop = findViewById(R.id.searchShop)
+
+        searchShop.queryHint = "Search Shop"
+
+
         //TOP is supposed to be the button for send to pantry list
         backHome = findViewById(R.id.backToHomeFromShop)
         //go back home button
@@ -49,9 +57,7 @@ class ShopActivity : AppCompatActivity(){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
     }
-
 
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
